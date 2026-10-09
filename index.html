@@ -180,219 +180,13 @@
   </div>
 
   <!-- Results count -->
-  <div class="px-4 py-2 text-sm text-gray-500" id="resultsCount">Showing 24 contractors near Riverside, CA</div>
+  <div class="px-4 py-2 text-sm text-gray-500" id="resultsCount"></div>
 
   <!-- Card grid -->
   <main class="px-4 pb-24 max-w-5xl mx-auto w-full">
-    <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
-
-      <!-- CLAIMED card -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" data-trade="general">
-        <div class="p-4">
-          <div class="flex items-start gap-3">
-            <!-- Avatar: photo if uploaded, blank circle if not -->
-            <div class="w-12 h-12 rounded-full bg-orange-100 overflow-hidden flex-shrink-0"></div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="font-bold text-gray-900 truncate">Rivera Construction</span>
-                <span class="text-green-600 text-xs font-bold">✓ Verified</span>
-              </div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="trade-pill bg-gray-100 text-gray-700">
-                  <img src="icons/trades/general.svg" onerror="this.style.display='none'" /> General
-                </span>
-                <span class="text-xs text-gray-400">Riverside, CA</span>
-              </div>
-              <div class="flex items-center gap-1 mt-1">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-xs text-gray-500">4 vets</span>
-                <span class="text-xs text-gray-500 font-semibold ml-1">✓ Pays on time</span>
-              </div>
-              <div class="flex items-center gap-2 mt-1.5">
-                <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=926325" target="_blank" class="flex items-center gap-1 text-xs text-green-600 font-medium hover:underline" title="View license">
-                  <img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed
-                </a>
-                <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=926325" target="_blank" class="flex items-center gap-1 text-xs text-green-600 font-medium hover:underline" title="View bond">
-                  <img src="icons/docs/bonded.svg" class="w-4 h-4" /> Bonded
-                </a>
-                <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=926325" target="_blank" class="flex items-center gap-1 text-xs text-green-600 font-medium hover:underline" title="View WC insurance">
-                  <img src="icons/docs/wc-insurance.svg" class="w-4 h-4" /> Insured
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex gap-2 mt-3">
-            <button onclick="toggleAccordion(this)" class="flex-1 bg-gray-100 text-gray-600 text-sm font-bold py-2 rounded-xl hover:bg-gray-200 transition">
-              ▾ More Info
-            </button>
-          </div>
-        </div>
-
-        <div class="accordion-body border-t border-gray-100">
-          <div class="p-4 space-y-3">
-            <div class="flex gap-2">
-              <a href="tel:9515551234" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5">
-                <img src="icons/phone-white.svg" class="w-4 h-4" /> Call
-              </a>
-              <a href="sms:9515551234" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5">
-                <img src="icons/text-white.svg" class="w-4 h-4" /> Text
-              </a>
-            </div>
-            <div class="grid grid-cols-2 gap-2 text-sm">
-              <div><span class="text-gray-400">License</span><br><span class="font-medium text-gray-800">#926325</span></div>
-              <div><span class="text-gray-400">Status</span><br><span class="font-medium text-green-600">CLEAR</span></div>
-              <div><span class="text-gray-400">Type</span><br><span class="font-medium text-gray-800">Sole Owner</span></div>
-              <div><span class="text-gray-400">Since</span><br><span class="font-medium text-gray-800">2008</span></div>
-            </div>
-            <div>
-              <p class="text-xs text-gray-400 mb-1.5">Work Photos</p>
-              <div class="flex gap-1.5 overflow-x-auto">
-                <div class="w-16 h-16 rounded-lg bg-gray-100 flex-shrink-0"></div>
-                <div class="w-16 h-16 rounded-lg bg-gray-100 flex-shrink-0"></div>
-                <div class="w-16 h-16 rounded-lg bg-gray-100 flex-shrink-0"></div>
-              </div>
-            </div>
-            <div>
-              <p class="text-xs text-gray-400 mb-1.5">Vetted By</p>
-              <div class="flex gap-1.5">
-                <div class="w-8 h-8 rounded-full bg-blue-100 overflow-hidden"></div>
-                <div class="w-8 h-8 rounded-full bg-green-100 overflow-hidden"></div>
-                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs text-gray-500 font-bold">+2</div>
-              </div>
-            </div>
-            <button onclick="openClaimModal('926325')" class="w-full text-xs font-semibold py-1 hover:underline" style="color:#A0272D">
-              Is this you? Claim your space →
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- UNCLAIMED card -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden grayscale-card" data-trade="electrical">
-        <div class="p-4">
-          <div class="flex items-start gap-3">
-            <!-- Blank circle — no icon, no photo -->
-            <div class="w-12 h-12 rounded-full bg-gray-100 flex-shrink-0"></div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5">
-                <span class="font-bold text-gray-700 truncate">Morales Electric</span>
-                <span class="text-gray-400 text-xs">Unclaimed</span>
-              </div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="trade-pill bg-gray-100 text-gray-500">
-                  <img src="icons/trades/electrical.svg" onerror="this.style.display='none'" /> Electrical
-                </span>
-                <span class="text-xs text-gray-400">Riverside, CA</span>
-              </div>
-              <div class="flex items-center gap-2 mt-1.5">
-                <span class="flex items-center gap-1 text-xs text-green-600 font-medium" title="Licensed">
-                  <img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed
-                </span>
-                <span class="flex items-center gap-1 text-xs text-gray-400 font-medium" title="Bond status unknown">
-                  <img src="icons/docs/bonded.svg" class="w-4 h-4 opacity-30" /> Bonded
-                </span>
-                <span class="flex items-center gap-1 text-xs text-gray-400 font-medium" title="WC status unknown">
-                  <img src="icons/docs/wc-insurance.svg" class="w-4 h-4 opacity-30" /> Insured
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex gap-2 mt-3">
-            <button onclick="toggleAccordion(this)" class="flex-1 bg-gray-100 text-gray-500 text-sm font-bold py-2 rounded-xl hover:bg-gray-200 transition">
-              ▾ More Info
-            </button>
-          </div>
-        </div>
-
-        <div class="accordion-body border-t border-gray-100">
-          <div class="p-4 space-y-3">
-            <div class="flex gap-2">
-              <a href="tel:" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5">
-                <img src="icons/phone-white.svg" class="w-4 h-4" /> Call
-              </a>
-              <a href="sms:" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5">
-                <img src="icons/text-white.svg" class="w-4 h-4" /> Text
-              </a>
-            </div>
-            <div class="grid grid-cols-2 gap-2 text-sm">
-              <div><span class="text-gray-400">License</span><br><span class="font-medium text-gray-700">#850703</span></div>
-              <div><span class="text-gray-400">Status</span><br><span class="font-medium text-green-600">CLEAR</span></div>
-              <div><span class="text-gray-400">Type</span><br><span class="font-medium text-gray-700">Corporation</span></div>
-              <div><span class="text-gray-400">Expires</span><br><span class="font-medium text-gray-700">12/2026</span></div>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-3 text-center">
-              <p class="text-sm text-gray-600 font-medium">This profile hasn't been claimed yet.</p>
-              <button onclick="openClaimModal('850703')" class="mt-1.5 text-sm font-bold hover:underline" style="color:#A0272D">
-                Is this you? Claim it free →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- UNCLAIMED card 2 -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden grayscale-card" data-trade="plumbing">
-        <div class="p-4">
-          <div class="flex items-start gap-3">
-            <div class="w-12 h-12 rounded-full bg-gray-100 flex-shrink-0"></div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5">
-                <span class="font-bold text-gray-700 truncate">Inland Plumbing Co.</span>
-                <span class="text-gray-400 text-xs">Unclaimed</span>
-              </div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="trade-pill bg-gray-100 text-gray-500">
-                  <img src="icons/trades/plumbing.svg" onerror="this.style.display='none'" /> Plumbing
-                </span>
-                <span class="text-xs text-gray-400">Corona, CA</span>
-              </div>
-              <div class="flex items-center gap-2 mt-1.5">
-                <span class="flex items-center gap-1 text-xs text-green-600 font-medium" title="Licensed">
-                  <img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed
-                </span>
-                <span class="flex items-center gap-1 text-xs text-gray-400 font-medium" title="Bond status unknown">
-                  <img src="icons/docs/bonded.svg" class="w-4 h-4 opacity-30" /> Bonded
-                </span>
-                <span class="flex items-center gap-1 text-xs text-gray-400 font-medium" title="WC status unknown">
-                  <img src="icons/docs/wc-insurance.svg" class="w-4 h-4 opacity-30" /> Insured
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="flex gap-2 mt-3">
-            <button onclick="toggleAccordion(this)" class="flex-1 bg-gray-100 text-gray-500 text-sm font-bold py-2 rounded-xl hover:bg-gray-200 transition">▾ More Info</button>
-          </div>
-        </div>
-        <div class="accordion-body border-t border-gray-100">
-          <div class="p-4 space-y-3">
-            <div class="flex gap-2">
-              <a href="tel:" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5">
-                <img src="icons/phone-white.svg" class="w-4 h-4" /> Call
-              </a>
-              <a href="sms:" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5">
-                <img src="icons/text-white.svg" class="w-4 h-4" /> Text
-              </a>
-            </div>
-            <div class="grid grid-cols-2 gap-2 text-sm">
-              <div><span class="text-gray-400">License</span><br><span class="font-medium">#771234</span></div>
-              <div><span class="text-gray-400">Status</span><br><span class="font-medium text-green-600">CLEAR</span></div>
-              <div><span class="text-gray-400">Type</span><br><span class="font-medium">Corporation</span></div>
-              <div><span class="text-gray-400">Expires</span><br><span class="font-medium">06/2027</span></div>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-3 text-center">
-              <p class="text-sm text-gray-600 font-medium">This profile hasn't been claimed yet.</p>
-              <button onclick="openClaimModal('771234')" class="mt-1.5 text-sm font-bold hover:underline" style="color:#A0272D">Is this you? Claim it free →</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="text-center mt-8">
-      <button class="bg-white border border-gray-200 text-gray-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-50 transition shadow-sm">
+    <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2"></div>
+    <div class="text-center mt-8" id="loadMoreWrap" style="display:none">
+      <button onclick="loadMore()" class="bg-white border border-gray-200 text-gray-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-50 transition shadow-sm">
         Load more contractors
       </button>
     </div>
@@ -531,15 +325,96 @@
     }
     // HAMBURGER:END
 
+    const API          = 'https://8bvjb1qz6g.execute-api.us-east-1.amazonaws.com/prod';
+    let currentZip     = '92504';
+    let currentTrade   = 'all';
+    let lastKey        = null;
+    let claimCountdown = null;
+
+    // ── Directory ─────────────────────────────────────────────────────────
+    async function fetchContractors(zip, trade, append = false) {
+      const grid    = document.getElementById('cardGrid');
+      const countEl = document.getElementById('resultsCount');
+      const moreBtn = document.getElementById('loadMoreWrap');
+      if (!append) { grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Loading contractors…</div>'; lastKey = null; }
+      try {
+        let url = `${API}/api/contractors?zip=${zip}&trade=${trade}`;
+        if (append && lastKey) url += `&lastKey=${encodeURIComponent(lastKey)}`;
+        const res  = await fetch(url);
+        const data = await res.json();
+        if (!append) grid.innerHTML = '';
+        if (!data.contractors || !data.contractors.length) {
+          if (!append) grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">No contractors found for this area and trade.</div>';
+          moreBtn.style.display = 'none';
+          return;
+        }
+        data.contractors.forEach(c => grid.insertAdjacentHTML('beforeend', renderCard(c)));
+        lastKey = data.lastKey || null;
+        moreBtn.style.display = lastKey ? 'block' : 'none';
+        const label = trade === 'all' ? 'All Trades' : trade.charAt(0).toUpperCase() + trade.slice(1);
+        countEl.textContent = `Showing ${grid.children.length} contractors near ${zip} — ${label}`;
+      } catch(e) {
+        console.error(e);
+        if (!append) grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Could not load contractors. Please try again.</div>';
+      }
+    }
+
+    function renderCard(c) {
+      const trade      = c.trade || 'general';
+      const tradeLabel = trade.charAt(0).toUpperCase() + trade.slice(1);
+      const statusColor = (c.status||'').toUpperCase() === 'CLEAR' ? 'text-green-600' : 'text-yellow-600';
+      const licenseBadge = c.source_url
+        ? `<a href="${c.source_url}" target="_blank" class="flex items-center gap-1 text-xs text-green-600 font-medium hover:underline"><img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed</a>`
+        : `<span class="flex items-center gap-1 text-xs text-green-600 font-medium"><img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed</span>`;
+      const bondBadge = `<span class="flex items-center gap-1 text-xs ${c.is_bonded?'text-green-600':'text-gray-400'} font-medium"><img src="icons/docs/bonded.svg" class="w-4 h-4 ${c.is_bonded?'':'opacity-30'}" /> Bonded</span>`;
+      const wcBadge   = `<span class="flex items-center gap-1 text-xs ${c.is_wc_covered?'text-green-600':'text-gray-400'} font-medium"><img src="icons/docs/wc-insurance.svg" class="w-4 h-4 ${c.is_wc_covered?'':'opacity-30'}" /> Insured</span>`;
+      const callRow   = c.claimed && c.phone ? `<div class="flex gap-2"><a href="tel:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5"><img src="icons/phone-white.svg" class="w-4 h-4" /> Call</a><a href="sms:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5"><img src="icons/text-white.svg" class="w-4 h-4" /> Text</a></div>` : '';
+      const claimBtn  = `<button onclick="openClaimModal('${c.license}')" class="w-full text-xs font-semibold py-1 hover:underline" style="color:#A0272D">Is this you? Claim it free →</button>`;
+      return `
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden ${c.claimed?'':'grayscale-card'}" data-trade="${trade}">
+        <div class="p-4">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-lg font-black text-white" style="background:#54585A">${(c.name||'?')[0].toUpperCase()}</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-bold ${c.claimed?'text-gray-900':'text-gray-700'} truncate">${c.name}</span>
+                ${c.claimed?'<span class="text-green-600 text-xs font-bold">✓ Verified</span>':'<span class="text-gray-400 text-xs">Unclaimed</span>'}
+              </div>
+              <div class="flex items-center gap-1 mt-0.5">
+                <span class="trade-pill bg-gray-100 ${c.claimed?'text-gray-700':'text-gray-500'}"><img src="icons/trades/${trade}.svg" onerror="this.style.display='none'" /> ${tradeLabel}</span>
+                <span class="text-xs text-gray-400">${c.city}, ${c.state}</span>
+              </div>
+              <div class="flex items-center gap-2 mt-1.5">${licenseBadge}${bondBadge}${wcBadge}</div>
+            </div>
+          </div>
+          <div class="flex gap-2 mt-3">
+            <button onclick="toggleAccordion(this)" class="flex-1 bg-gray-100 ${c.claimed?'text-gray-600':'text-gray-500'} text-sm font-bold py-2 rounded-xl hover:bg-gray-200 transition">▾ More Info</button>
+          </div>
+        </div>
+        <div class="accordion-body border-t border-gray-100">
+          <div class="p-4 space-y-3">
+            ${callRow}
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div><span class="text-gray-400">License</span><br><span class="font-medium">#${c.license}</span></div>
+              <div><span class="text-gray-400">Status</span><br><span class="font-medium ${statusColor}">${c.status||'—'}</span></div>
+              <div><span class="text-gray-400">Type</span><br><span class="font-medium">${c.business_type||'—'}</span></div>
+              <div><span class="text-gray-400">Since</span><br><span class="font-medium">${c.issue_date?c.issue_date.slice(0,4):'—'}</span></div>
+            </div>
+            ${!c.claimed?`<div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-sm text-gray-600 font-medium">This profile hasn't been claimed yet.</p>${claimBtn}</div>`:claimBtn}
+          </div>
+        </div>
+      </div>`;
+    }
+
     function toggleAccordion(btn) {
-      const card = btn.closest('.overflow-hidden');
-      const body = card.querySelector('.accordion-body');
+      const body   = btn.closest('.overflow-hidden').querySelector('.accordion-body');
       const isOpen = body.classList.contains('open');
       body.classList.toggle('open', !isOpen);
-      btn.textContent = isOpen ? '▾ More' : '▴ Less';
+      btn.textContent = isOpen ? '▾ More Info' : '▴ Less';
     }
 
     function filterTrade(trade) {
+      currentTrade = trade;
       document.querySelectorAll('.trade-filter-btn').forEach(b => {
         const active = b.dataset.trade === trade;
         b.classList.toggle('bg-gray-900', active);
@@ -547,30 +422,38 @@
         b.classList.toggle('bg-gray-100', !active);
         b.classList.toggle('text-gray-700', !active);
       });
-      document.querySelectorAll('#cardGrid > div').forEach(card => {
-        card.style.display = (trade === 'all' || card.dataset.trade === trade) ? '' : 'none';
-      });
+      fetchContractors(currentZip, currentTrade);
     }
 
     function updateZip() {
       const zip = document.getElementById('zipInput').value.trim();
       if (zip.length === 5) {
+        currentZip = zip;
         document.getElementById('currentLocation').textContent = zip;
-        document.getElementById('resultsCount').textContent = `Showing contractors near ${zip}`;
+        fetchContractors(currentZip, currentTrade);
       }
     }
 
     function useMyLocation() {
       if (!navigator.geolocation) return;
-      navigator.geolocation.getCurrentPosition(pos => {
-        document.getElementById('currentLocation').textContent =
-          `${pos.coords.latitude.toFixed(2)}, ${pos.coords.longitude.toFixed(2)}`;
+      navigator.geolocation.getCurrentPosition(async pos => {
+        try {
+          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
+          const d = await r.json();
+          const zip = d.address?.postcode?.slice(0,5);
+          if (zip) {
+            currentZip = zip;
+            document.getElementById('zipInput').value = zip;
+            document.getElementById('currentLocation').textContent = d.address?.city || zip;
+            fetchContractors(currentZip, currentTrade);
+          }
+        } catch { /* silently fall back */ }
       });
     }
 
-    let claimCountdown = null;
+    function loadMore() { fetchContractors(currentZip, currentTrade, true); }
 
-    const API = 'https://8bvjb1qz6g.execute-api.us-east-1.amazonaws.com/prod';
+    fetchContractors(currentZip, currentTrade);
 
     function showStep(n) {
       ['step1','step2','step3','step4'].forEach((id, i) => {

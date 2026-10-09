@@ -77,6 +77,25 @@ Resources:
             Path: /api/verify-wc
             Method: POST
 
+  GetContractorsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gcoffice-get-contractors
+      PackageType: Image
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:latest
+      ImageConfig:
+        Command: ["get_contractors_handler.handler"]
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: gcoffice-subs
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref VerifyApi
+            Path: /api/contractors
+            Method: GET
+
   GetUploadUrlFunction:
     Type: AWS::Serverless::Function
     Properties:

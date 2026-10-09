@@ -22,6 +22,7 @@ COPY verify-bond/handler.py verify_bond_handler.py
 COPY verify-wc/handler.py verify_wc_handler.py
 COPY get-upload-url/handler.py get_upload_url_handler.py
 COPY scan-card/handler.py scan_card_handler.py
+COPY get-contractors/handler.py get_contractors_handler.py
 
 # Default handler (overridden per function in SAM)
 CMD ["verify_license_handler.handler"]
