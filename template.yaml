@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: The GC's Office — Verify API
+
+Parameters:
+  BrightDataSbUrl:
+    Type: String
+    NoEcho: true
+    Description: Bright Data Scraping Browser WebSocket URL
+
+  CardScanBucket:
+    Type: String
+    Default: gcoffice-card-scans
+    Description: S3 bucket for temporary business card uploads
+
+Globals:
+  Function:
+    Timeout: 120
+    MemorySize: 512
+    Environment:
+      Variables:
+        AWS_REGION_NAME: us-east-1
+        DYNAMODB_TABLE: gcoffice-subs
+        BRIGHTDATA_SB_URL: !Ref BrightDataSbUrl
+        CARD_SCAN_BUCKET: !Ref CardScanBucket
+
+Resources:
+
+  VerifyLicenseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gcoffice-verify-license
+      PackageType: Image
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:latest
+      ImageConfig:
+        Command: ["verify_license_handler.handler"]
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: gcoffice-subs
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref VerifyApi
+            Path: /api/verify-license
+            Method: POST
+
+  VerifyBondFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gcoffice-verify-bond
+      PackageType: Image
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:latest
+      ImageConfig:
+        Command: ["verify_bond_handler.handler"]
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref VerifyApi
+            Path: /api/verify-bond
+            Method: POST
+
+  VerifyWCFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gcoffice-verify-wc
+      PackageType: Image
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:latest
+      ImageConfig:
+        Command: ["verify_wc_handler.handler"]
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref VerifyApi
+            Path: /api/verify-wc
+            Method: POST
+
+  GetUploadUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gcoffice-get-upload-url
+      PackageType: Image
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:latest
+      ImageConfig:
+        Command: ["get_upload_url_handler.handler"]
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref CardScanBucket
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref VerifyApi
+            Path: /api/card-upload-url
+            Method: GET
+
+  ScanCardFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gcoffice-scan-card
+      PackageType: Image
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:latest
+      ImageConfig:
+        Command: ["scan_card_handler.handler"]
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref CardScanBucket
+        - Statement:
+            - Effect: Allow
+              Action: textract:AnalyzeDocument
+              Resource: "*"
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref VerifyApi
+            Path: /api/scan-card
+            Method: POST
+
+  VerifyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: gcoffice-verify-api
+      StageName: prod
+      Cors:
+        AllowMethods: "'POST,GET,OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway base URL
+    Value: !Sub 'https://${VerifyApi}.execute-api.us-east-1.amazonaws.com/prod'

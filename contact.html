@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — The GC's Office</title>
+  <meta name="description" content="Contact Loyal9 LLC — builders of The GC's Office. Riverside, CA." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 100vw; overflow-x: hidden; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <header style="background:#54585A" class="text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-xl font-black tracking-tight">The GC's Office</span>
+      <span class="text-gray-300 text-sm font-medium hidden sm:inline">/ Contact</span>
+    </a>
+    <button onclick="openMenu()" class="flex flex-col gap-1.5 p-1" aria-label="Menu">
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </header>
+
+  <!-- HAMBURGER:START -->
+  <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-50 hidden" onclick="closeMenu()"></div>
+  <div id="menuDrawer" class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div style="background:#54585A" class="px-5 py-4 flex items-center justify-between">
+      <span class="text-white font-black">Menu</span>
+      <button onclick="closeMenu()" class="text-gray-300 hover:text-white text-xl leading-none">&times;</button>
+    </div>
+    <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+      <a href="my-guy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">My Guy</a>
+      <a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">About Us</a>
+      <a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">Contact</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="privacy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Privacy Policy</a>
+      <a href="terms.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Terms of Service</a>
+      <a href="licenses.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Open Source Licenses</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="https://github.com/Shannon-Goddard" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">GitHub Repo</a>
+    </nav>
+    <div class="px-4 py-4 border-t border-gray-100">
+      <a href="https://www.buymeacoffee.com/goddardshannon9" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition" style="background:#A0272D">
+        Buy the Dev a Beer
+      </a>
+
+    <section>
+      <h1 class="text-2xl font-black text-gray-900 mb-2">Contact</h1>
+      <p class="text-gray-500 text-sm">One person building this. Response time is real, not a bot.</p>
+    </section>
+
+    <!-- Contact cards -->
+    <section class="space-y-3">
+      <a href="mailto:shannon@loyal9.app" class="flex items-center gap-4 bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition">
+        <span class="text-2xl">📧</span>
+        <div>
+          <p class="font-bold text-gray-800 text-sm">Email</p>
+          <p class="text-gray-500 text-sm">shannon@loyal9.app</p>
+        </div>
+      </a>
+      <a href="https://github.com/Shannon-Goddard" target="_blank" class="flex items-center gap-4 bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition">
+        <span class="text-2xl">🐙</span>
+        <div>
+          <p class="font-bold text-gray-800 text-sm">GitHub</p>
+          <p class="text-gray-500 text-sm">github.com/Shannon-Goddard</p>
+        </div>
+      </a>
+      <a href="https://shannon-goddard.loyal9.app" target="_blank" class="flex items-center gap-4 bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition">
+        <span class="text-2xl">🌐</span>
+        <div>
+          <p class="font-bold text-gray-800 text-sm">Developer Portfolio</p>
+          <p class="text-gray-500 text-sm">shannon-goddard.loyal9.app</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- Company info -->
+    <section class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+      <p class="font-black text-gray-900 text-sm">Loyal9 LLC</p>
+      <p class="text-gray-500 text-sm mt-1">Riverside, CA</p>
+      <p class="text-gray-500 text-sm">Established May 2023</p>
+      <p class="text-gray-400 text-xs mt-3">The GC's Office is a product of Loyal9 LLC. For contractor profile disputes, data corrections, or DMCA requests, email the address above with the subject line matching your inquiry.</p>
+    </section>
+
+    <!-- What to contact about -->
+    <section>
+      <h2 class="text-base font-black text-gray-900 mb-3">What to reach out about</h2>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex gap-2"><span style="color:#A0272D" class="font-bold">→</span> Your contractor profile needs a correction</li>
+        <li class="flex gap-2"><span style="color:#A0272D" class="font-bold">→</span> You want to report inaccurate license data</li>
+        <li class="flex gap-2"><span style="color:#A0272D" class="font-bold">→</span> You have a bug report or feature idea</li>
+        <li class="flex gap-2"><span style="color:#A0272D" class="font-bold">→</span> Press, partnership, or data licensing inquiry</li>
+        <li class="flex gap-2"><span style="color:#A0272D" class="font-bold">→</span> You want to contribute to the open source repo</li>
+      </ul>
+    </section>
+
+    <div class="pt-2">
+      <a href="https://www.buymeacoffee.com/goddardshannon9" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-xl hover:opacity-90 transition" style="background:#A0272D">
+        🍺 Buy the Dev a Beer
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="text-center py-8 text-xs text-gray-400 border-t border-gray-100 mt-4">
+    © 2026 Loyal9 LLC · Riverside, CA · <a href="privacy.html" class="hover:underline">Privacy</a> · <a href="terms.html" class="hover:underline">Terms</a>
+  </footer>
+
+  <script>
+    // HAMBURGER:START
+    function openMenu() {
+      document.getElementById('menuOverlay').classList.remove('hidden');
+      document.getElementById('menuDrawer').classList.remove('translate-x-full');
+    }
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.add('hidden');
+      document.getElementById('menuDrawer').classList.add('translate-x-full');
+    }
+    // HAMBURGER:END
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — The GC's Office</title>
+  <meta name="description" content="Privacy Policy for The GC's Office by Loyal9 LLC." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 100vw; overflow-x: hidden; }
+    h2 { font-size: 1rem; font-weight: 800; color: #111827; margin-top: 2rem; margin-bottom: 0.5rem; }
+    p, li { font-size: 0.875rem; color: #4b5563; line-height: 1.7; }
+    ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+    li { margin-bottom: 0.35rem; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <header style="background:#54585A" class="text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-xl font-black tracking-tight">The GC's Office</span>
+      <span class="text-gray-300 text-sm font-medium hidden sm:inline">/ Privacy Policy</span>
+    </a>
+    <button onclick="openMenu()" class="flex flex-col gap-1.5 p-1" aria-label="Menu">
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </header>
+
+  <!-- HAMBURGER:START -->
+  <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-50 hidden" onclick="closeMenu()"></div>
+  <div id="menuDrawer" class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div style="background:#54585A" class="px-5 py-4 flex items-center justify-between">
+      <span class="text-white font-black">Menu</span>
+      <button onclick="closeMenu()" class="text-gray-300 hover:text-white text-xl leading-none">&times;</button>
+    </div>
+    <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+      <a href="my-guy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">My Guy</a>
+      <a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">About Us</a>
+      <a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">Contact</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="privacy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Privacy Policy</a>
+      <a href="terms.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Terms of Service</a>
+      <a href="licenses.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Open Source Licenses</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="https://github.com/Shannon-Goddard" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">GitHub Repo</a>
+    </nav>
+    <div class="px-4 py-4 border-t border-gray-100">
+      <a href="https://www.buymeacoffee.com/goddardshannon9" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition" style="background:#A0272D">
+        Buy the Dev a Beer
+      </a>
+    </div>
+  </div>
+  <!-- HAMBURGER:END -->
+
+  <main class="max-w-2xl mx-auto px-4 py-10">
+
+    <h1 class="text-2xl font-black text-gray-900">Privacy Policy</h1>
+    <p class="text-gray-400 text-xs mt-1 mb-6">Loyal9 LLC · Last updated: October 2026</p>
+
+    <p>The GC's Office is operated by Loyal9 LLC, Riverside, CA. This policy explains what data we collect, why, and how it's handled. We keep it short because we mean it.</p>
+
+    <h2>What We Collect</h2>
+    <p><strong>Contractor directory data</strong> — sourced from the California Contractors State License Board (CSLB) public registry. This includes business name, license number, license classification, city, status, and expiration date. This is public record.</p>
+    <p class="mt-2"><strong>When you claim a profile:</strong></p>
+    <ul>
+      <li>Your license number — used to verify your identity against the CSLB record, then stored as your profile identifier</li>
+      <li>The government URL you provide — stored as the source link behind your Licensed badge. This is a public URL.</li>
+      <li>Bond number — used only for verification against the URL you provide. <strong>We do not store your bond number.</strong></li>
+      <li>Bond URL — stored as the source link behind your Bonded badge. Public URL.</li>
+      <li>Workers' comp URL — stored as the source link behind your Insured badge. Public URL.</li>
+      <li>Phone number — stored on your claimed profile, displayed to users who expand your card</li>
+      <li>Service area zip codes — stored on your profile to power location-based filtering</li>
+      <li>Profile photo and work photos — stored in AWS S3, displayed on your public profile</li>
+    </ul>
+    <p class="mt-2"><strong>Location data</strong> — if you use "My Location," your browser's geolocation API returns coordinates to filter nearby contractors. We do not store your coordinates.</p>
+    <p class="mt-2"><strong>Zip code input</strong> — used to filter directory results. Not stored.</p>
+
+    <h2>What We Don't Collect</h2>
+    <ul>
+      <li>No tracking pixels</li>
+      <li>No third-party ad networks</li>
+      <li>No cookies beyond what's required for session state</li>
+      <li>No bond numbers, policy numbers, or insurance carrier details</li>
+      <li>No payment information of any kind</li>
+    </ul>
+
+    <h2>How We Use Your Data</h2>
+    <ul>
+      <li>To display your public contractor profile in the directory</li>
+      <li>To verify your license, bond, and WC status via government URLs you provide</li>
+      <li>To show trust badges (Licensed, Bonded, Insured) linked to their public source</li>
+      <li>To filter and sort directory results by location and trade</li>
+    </ul>
+
+    <h2>Data Sources</h2>
+    <p>Contractor directory data is sourced from the California Contractors State License Board (CSLB) public registry at <a href="https://www.cslb.ca.gov" target="_blank" class="underline">cslb.ca.gov</a>. All data used is publicly available under California public records law.</p>
+
+    <h2>Data Storage</h2>
+    <p>Claimed profile data is stored in AWS DynamoDB and AWS S3, both hosted in the United States. We use standard AWS security practices including encryption at rest and in transit.</p>
+
+    <h2>Your Rights</h2>
+    <p>If you have claimed a profile and want your data removed or corrected, email <a href="mailto:shannon@loyal9.app" class="underline">shannon@loyal9.app</a>. We will respond within 5 business days.</p>
+    <p class="mt-2">Unclaimed profiles contain only public CSLB registry data. To dispute public record data, contact the CSLB directly at <a href="https://www.cslb.ca.gov" target="_blank" class="underline">cslb.ca.gov</a>.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>This service is intended for licensed contractors and is not directed at anyone under 18.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>If we make material changes, we'll update the date at the top of this page. Continued use of the service after changes constitutes acceptance.</p>
+
+    <h2>Contact</h2>
+    <p>Loyal9 LLC · Riverside, CA · <a href="mailto:shannon@loyal9.app" class="underline">shannon@loyal9.app</a></p>
+
+  </main>
+
+  <footer class="text-center py-8 text-xs text-gray-400 border-t border-gray-100 mt-4">
+    © 2026 Loyal9 LLC · Riverside, CA · <a href="privacy.html" class="hover:underline">Privacy</a> · <a href="terms.html" class="hover:underline">Terms</a>
+  </footer>
+
+  <script>
+    // HAMBURGER:START
+    function openMenu() {
+      document.getElementById('menuOverlay').classList.remove('hidden');
+      document.getElementById('menuDrawer').classList.remove('translate-x-full');
+    }
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.add('hidden');
+      document.getElementById('menuDrawer').classList.add('translate-x-full');
+    }
+    // HAMBURGER:END
+  </script>
+</body>
+</html>

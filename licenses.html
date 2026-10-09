@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Source Licenses — The GC's Office</title>
+  <meta name="description" content="Open source licenses and attributions for The GC's Office by Loyal9 LLC." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 100vw; overflow-x: hidden; }
+    h2 { font-size: 1rem; font-weight: 800; color: #111827; margin-top: 2rem; margin-bottom: 0.5rem; }
+    p, li { font-size: 0.875rem; color: #4b5563; line-height: 1.7; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <header style="background:#54585A" class="text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-xl font-black tracking-tight">The GC's Office</span>
+      <span class="text-gray-300 text-sm font-medium hidden sm:inline">/ Licenses</span>
+    </a>
+    <button onclick="openMenu()" class="flex flex-col gap-1.5 p-1" aria-label="Menu">
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </header>
+
+  <!-- HAMBURGER:START -->
+  <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-50 hidden" onclick="closeMenu()"></div>
+  <div id="menuDrawer" class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div style="background:#54585A" class="px-5 py-4 flex items-center justify-between">
+      <span class="text-white font-black">Menu</span>
+      <button onclick="closeMenu()" class="text-gray-300 hover:text-white text-xl leading-none">&times;</button>
+    </div>
+    <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+      <a href="my-guy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">My Guy</a>
+      <a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">About Us</a>
+      <a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">Contact</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="privacy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Privacy Policy</a>
+      <a href="terms.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Terms of Service</a>
+      <a href="licenses.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Open Source Licenses</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="https://github.com/Shannon-Goddard" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">GitHub Repo</a>
+    </nav>
+    <div class="px-4 py-4 border-t border-gray-100">
+      <a href="https://www.buymeacoffee.com/goddardshannon9" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition" style="background:#A0272D">
+        Buy the Dev a Beer
+      </a>
+    </div>
+  </div>
+  <!-- HAMBURGER:END -->
+
+  <main class="max-w-2xl mx-auto px-4 py-10">
+
+    <h1 class="text-2xl font-black text-gray-900">Open Source Licenses</h1>
+    <p class="text-gray-400 text-xs mt-1 mb-6">Loyal9 LLC · The GC's Office · Last updated: October 2026</p>
+
+    <p>The GC's Office is built on open source software and public data. Full attributions below.</p>
+
+    <h2>This Project</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-1">
+      <p class="font-bold text-gray-800">The GC's Office</p>
+      <p>© 2026 Loyal9 LLC · Shannon Goddard · Riverside, CA</p>
+      <p>Licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank" class="underline">MIT License</a>. Code is free, always. Attribution required.</p>
+      <p><a href="https://github.com/Shannon-Goddard" target="_blank" class="underline">github.com/Shannon-Goddard</a></p>
+    </div>
+
+    <h2>Frontend</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-1">
+      <p class="font-bold text-gray-800">Tailwind CSS</p>
+      <p>© Tailwind Labs, Inc.</p>
+      <p>Licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank" class="underline">MIT License</a>. Used for all UI styling via CDN.</p>
+      <p><a href="https://tailwindcss.com" target="_blank" class="underline">tailwindcss.com</a></p>
+    </div>
+
+    <h2>Backend — Python Libraries</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-4">
+      <div>
+        <p class="font-bold text-gray-800">Playwright <span class="font-normal text-gray-500">v1.49.0</span></p>
+        <p>© Microsoft Corporation</p>
+        <p>Licensed under the <a href="https://opensource.org/licenses/Apache-2.0" target="_blank" class="underline">Apache License 2.0</a>. Used in Lambda functions to scrape government licensing board URLs via Bright Data CDP for license, bond, and WC verification.</p>
+        <p><a href="https://playwright.dev" target="_blank" class="underline">playwright.dev</a></p>
+      </div>
+      <hr class="border-gray-100" />
+      <div>
+        <p class="font-bold text-gray-800">boto3 <span class="font-normal text-gray-500">v1.35.0</span></p>
+        <p>© Amazon Web Services, Inc.</p>
+        <p>Licensed under the <a href="https://opensource.org/licenses/Apache-2.0" target="_blank" class="underline">Apache License 2.0</a>. Used in Lambda functions and seed scripts to interact with DynamoDB, S3, and Textract.</p>
+        <p><a href="https://boto3.amazonaws.com" target="_blank" class="underline">boto3.amazonaws.com</a></p>
+      </div>
+    </div>
+
+    <h2>AWS Services</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-1">
+      <p class="text-gray-600">The following AWS services are used to operate this platform. AWS SDKs are licensed under the Apache License 2.0. The services themselves are proprietary to Amazon Web Services, Inc.</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><strong>AWS Lambda</strong> — serverless compute for license, bond, WC verification, card scan, and presigned URL generation</li>
+        <li><strong>Amazon API Gateway</strong> — REST API routing all Lambda endpoints</li>
+        <li><strong>Amazon DynamoDB</strong> — primary data store for the contractor directory (275,390+ CA records)</li>
+        <li><strong>Amazon S3</strong> — temporary storage for business card scan uploads (24h auto-delete)</li>
+        <li><strong>AWS Textract</strong> — OCR and form extraction for the business card scanner</li>
+        <li><strong>AWS Systems Manager Parameter Store</strong> — secure storage for Bright Data credentials</li>
+        <li><strong>Amazon ECR</strong> — container image registry for Lambda Docker deployments</li>
+      </ul>
+      <p class="mt-2"><a href="https://aws.amazon.com" target="_blank" class="underline">aws.amazon.com</a></p>
+    </div>
+
+    <h2>Container Base Image</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-1">
+      <p class="font-bold text-gray-800">AWS Lambda Python 3.12 Base Image</p>
+      <p>© Amazon Web Services, Inc.</p>
+      <p>Licensed under the <a href="https://opensource.org/licenses/Apache-2.0" target="_blank" class="underline">Apache License 2.0</a>. Used as the base for the Lambda Docker container image.</p>
+      <p><a href="https://gallery.ecr.aws/lambda/python" target="_blank" class="underline">gallery.ecr.aws/lambda/python</a></p>
+    </div>
+
+    <h2>Data Sources</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-1">
+      <p class="font-bold text-gray-800">California Contractors State License Board (CSLB)</p>
+      <p>Contractor directory data is sourced from the CSLB public registry. All data is publicly available under California public records law. The GC's Office is not affiliated with or endorsed by the CSLB.</p>
+      <p><a href="https://www.cslb.ca.gov" target="_blank" class="underline">cslb.ca.gov</a></p>
+    </div>
+
+    <h2>Data License</h2>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-1">
+      <p>Aggregate data produced by The GC's Office platform is published under a DOI (Digital Object Identifier) license. Data is free, always. Individual PII is never published.</p>
+      <p><a href="https://www.doi.org" target="_blank" class="underline">doi.org</a></p>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-gray-100">
+      <p class="text-xs text-gray-400">If you believe a license attribution is missing or incorrect, contact <a href="mailto:shannon@loyal9.app" class="underline">shannon@loyal9.app</a>.</p>
+    </div>
+
+  </main>
+
+  <footer class="text-center py-8 text-xs text-gray-400 border-t border-gray-100 mt-4">
+    © 2026 Loyal9 LLC · Riverside, CA · <a href="privacy.html" class="hover:underline">Privacy</a> · <a href="terms.html" class="hover:underline">Terms</a>
+  </footer>
+
+  <script>
+    // HAMBURGER:START
+    function openMenu() {
+      document.getElementById('menuOverlay').classList.remove('hidden');
+      document.getElementById('menuDrawer').classList.remove('translate-x-full');
+    }
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.add('hidden');
+      document.getElementById('menuDrawer').classList.add('translate-x-full');
+    }
+    // HAMBURGER:END
+  </script>
+</body>
+</html>

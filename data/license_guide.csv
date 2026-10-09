@@ -1,0 +1,77 @@
+class,contractor_type,description,field,svg_path
+Class A,General Engineering Contractor,"Focused on fixed infrastructure projects such as highways, bridges, water power, public works, and major transit systems.",general,icons\trades\general.svg
+Class B,General Building Contractor,Focused on residential and commercial building construction involving structures that require at least two unrelated building trades.,general,icons\trades\general.svg
+C-2,Insulation and Acoustical Contractor,"Installs insulating media and acoustic materials to control heat, sound, or moisture.",insulation,icons\trades\insulation.svg
+C-4,"Boiler, Hot Water Heating and Steam Fitting Contractor","Installs, services, and repairs boilers, hot water heating systems, and steam fitting.",plumbing,icons\trades\plumbing.svg
+C-5,Framing and Rough Carpentry Contractor,"Performs structural wood framing, rough carpentry, and sub-flooring work.",framing,icons\trades\framing.svg
+C-6,"Cabinet, Millwork and Finish Carpentry Contractor","Installs cabinets, cases, sashes, doors, trim, and other fine woodwork.",carpentry,icons\trades\carpentry.svg
+C-7,Low Voltage Systems Contractor,"Installs, services, and maintains communication, data, security, and low-voltage electrical systems.",electrical,icons\trades\electrical.svg
+C-8,Concrete Contractor,"Forms, pours, places, finishes, and installs concrete structures and slabs.",concrete,icons\trades\concrete.svg
+C-9,Drywall Contractor,"Installs and finishes drywall, gypsum board, and interior wall surfaces.",drywall,icons\trades\drywall.svg
+C10,Electrical Contractor,"Installs, fixes, and connects all electrical wiring, fixtures, and panels.",electrical,icons\trades\electrical.svg
+C11,Elevator Contractor,"Installs, repairs, and maintains elevators, lifts, and moving walkways.",elevator,icons\trades\elevator.svg
+C12,Earthwork and Paving Contractors,"Digs, moves, grades, and paves ground surfaces, roads, and driveways.",earthwork,icons\trades\earthwork.svg
+C13,Fencing Contractor,"Builds, erects, and repairs all types of fencing and gates.",fencing,icons\trades\fencing.svg
+C15,Flooring and Floor Covering Contractors,"Prepares surfaces and lays carpet, hardwood, linoleum, and tile flooring.",flooring,icons\trades\flooring.svg
+C16,Fire Protection Contractor,Layouts fabricates and installs fire sprinkler and suppression systems.,fire,icons\trades\fire.svg
+C17,Glazing Contractor,"Selects, cuts, and installs glass, mirrors, and storefront windows.",glazing,icons\trades\glazing.svg
+C20,Warm-Air Heating Ventilating and Air-Conditioning (HVAC) Contractor,Installs and services heating ventilation and cooling systems.,hvac,icons\trades\hvac.svg
+C21,Building Moving/Demolition Contractor,"Raises, structurally moves, or tears down buildings and structures.",demolition,icons\trades\demolition.svg
+C22,Asbestos Abatement Contractor,Safely removes and contains hazardous asbestos materials.,hazmat,icons\trades\hazmat.svg
+C23,Ornamental Metal Contractor,"Assembles, shapes, and installs architectural or decorative metal elements.",metal,icons\trades\metal.svg
+C27,Landscaping Contractor,"Builds, plants, and maintains gardens, yards, and hardscape features.",landscape,icons\trades\landscape.svg
+C28,Lock and Security Equipment Contractor,Installs and services locks safes and electronic security hardware.,security,icons\trades\security.svg
+C29,Masonry Contractor,"Lays brick, stone, concrete blocks, and structural clay products.",masonry,icons\trades\masonry.svg
+C31,Construction Zone Traffic Control Contractor,"Sets up road safety lanes, barricades, and traffic control devices.",traffic,icons\trades\traffic.svg
+C32,Parking and Highway Improvement Contractor,"Applies striping, pavement markings, and highway safety features.",paving,icons\trades\paving.svg
+C33,Painting and Decorating Contractor,"Prepares surfaces and applies paint, wallpaper, and protective coatings.",painting,icons\trades\painting.svg
+C34,Pipeline Contractor,"Fabricates and lays oil, gas, water, and industrial pipelines.",pipeline,icons\trades\pipeline.svg
+C35,Lathing and Plastering Contractor,"Applies lath, plaster, stucco, and exterior finishes.",plastering,icons\trades\plastering.svg
+C36,Plumbing Contractor,"Installs and repairs water pipes, fixtures, gas lines, and sewage systems.",plumbing,icons\trades\plumbing.svg
+C38,Refrigeration Contractor,Installs and services commercial and industrial refrigeration and cooling systems.,hvac,icons\trades\hvac.svg
+C39,Roofing Contractor,"Installs and repairs roof decks, waterproofing, and shingles.",roofing,icons\trades\roofing.svg
+C42,Sanitation System Contractor,"Installs septic tanks, cesspools, and storm drainage systems.",plumbing,icons\trades\plumbing.svg
+C43,Sheet Metal Contractor,"Fabricates and installs architectural sheet metal, flashing, and ductwork.",metal,icons\trades\metal.svg
+C45,Sign Contractor,Builds and installs electrical and non-electrical signage.,signage,icons\trades\signage.svg
+C46,Solar Contractor,Installs and repairs thermal and photovoltaic solar energy systems.,solar,icons\trades\solar.svg
+C47,Manufactured Housing Contractor,Sets up and anchors mobile and manufactured homes.,general,icons\trades\general.svg
+C49,Tree and Palm Contractor,"Prunes, cuts, or removes trees and stumps.",landscape,icons\trades\landscape.svg
+C50,Reinforcing Steel Contractor,Places and ties steel reinforcing bars (rebar) for concrete.,concrete,icons\trades\concrete.svg
+C51,Structural Steel Contractor,Erects structural steel shapes and columns for buildings and bridges.,metal,icons\trades\metal.svg
+C53,Swimming Pool Contractor,Constructs and repairs swimming pools and spas.,pool,icons\trades\pool.svg
+C54,Ceramic and Mosaic Tile Contractor,"Installs ceramic, mosaic, and clay tile finishes.",flooring,icons\trades\flooring.svg
+C55,Water Conditioning Contractor,Installs water softeners and purification equipment.,plumbing,icons\trades\plumbing.svg
+C57,Well Drilling Contractor,Bores drills and services water wells and pumps.,earthwork,icons\trades\earthwork.svg
+C60,Welding Contractor,Performs structural and industrial welding services.,metal,icons\trades\metal.svg
+C61,Limited Specialty,A catch-all classification for unique or niche trades that don't fit standard categories.,general,icons\trades\general.svg
+D-3,Awnings,Fabricates and installs awnings and canopies.,carpentry,icons\trades\carpentry.svg
+D-4,Central Vacuum Systems,Installs built-in central vacuum systems.,general,icons\trades\general.svg
+D-6,Concrete-Related Services,"Interlocking pavers, concrete pumping, and restoration — does not include framing or pouring main slabs.",concrete,icons\trades\concrete.svg
+D-9,"Drilling, Blasting, and Oil Field Work",Performs drilling blasting and oil field construction work.,earthwork,icons\trades\earthwork.svg
+D10,Elevated Floors,Installs raised access and elevated floor systems.,flooring,icons\trades\flooring.svg
+D12,Synthetic Products,"Installs synthetic turf or surfaces.",landscape,icons\trades\landscape.svg
+D16,"Hardware, Locks, and Safes",Installs and services hardware locks and safes.,security,icons\trades\security.svg
+D21,Machinery and Pumps,Installs and services industrial machinery and pump systems.,general,icons\trades\general.svg
+D24,Metal Products,"Installs metal cabinets, lockers, and non-structural fascia.",metal,icons\trades\metal.svg
+D28,"Doors, Gates, and Activating Devices",Installs and services doors gates and automated activating devices.,carpentry,icons\trades\carpentry.svg
+D29,Paperhanging,"Installs decorative wall coverings, vinyl, and cork — excludes paint.",painting,icons\trades\painting.svg
+D30,Pile Driving and Pressure Foundation Jacking,Drives piles and performs pressure foundation jacking.,earthwork,icons\trades\earthwork.svg
+D31,Pole Installation and Maintenance,Installs and maintains utility and structural poles.,general,icons\trades\general.svg
+D34,Prefabricated Equipment,Installs prefabricated building components and equipment.,general,icons\trades\general.svg
+D35,Pool and Spa Maintenance,"Services pool and spa motors, pumps, and filters — distinct from full pool construction.",pool,icons\trades\pool.svg
+D38,Sand and Water Blasting,Performs surface preparation via sand and water blasting.,general,icons\trades\general.svg
+D39,Scaffolding,Erects and dismantles scaffolding systems for construction access.,general,icons\trades\general.svg
+D40,Service Station Equipment and Maintenance,Installs and services fuel dispensing and service station equipment.,general,icons\trades\general.svg
+D41,Siding and Decking,Installs exterior siding panels and decking systems.,framing,icons\trades\framing.svg
+D42,Non-Electrical Sign Installation,Installs non-electrical signage and displays.,signage,icons\trades\signage.svg
+D43,Tree Service,"Prunes, cuts, or removes trees — legacy classification transitioning to C-49.",landscape,icons\trades\landscape.svg
+D50,Suspended Ceilings,Installs suspended and drop ceiling grid systems.,drywall,icons\trades\drywall.svg
+D52,Window Coverings,"Installs blinds, shades, shutters, and window treatment systems.",carpentry,icons\trades\carpentry.svg
+D53,Wood Tanks,Constructs and repairs wood tanks and containers.,carpentry,icons\trades\carpentry.svg
+D54,Trenching Only,Performs excavation and trenching work only.,earthwork,icons\trades\earthwork.svg
+D59,Hydroseed Spraying,Applies hydroseeding mixtures for erosion control and landscaping.,landscape,icons\trades\landscape.svg
+D62,Air and Water Balancing,Tests and balances HVAC air and water distribution systems.,hvac,icons\trades\hvac.svg
+D63,Construction Clean-up,"Removes debris, drywall scrap, and adhesive from finished construction sites.",general,icons\trades\general.svg
+D64,Non-specialized,General non-specialized construction work not covered by other classifications.,general,icons\trades\general.svg
+D65,Weatherization and Energy Conservation,Installs weatherization and energy conservation improvements.,insulation,icons\trades\insulation.svg
+HAZ,Hazardous Substance Removal Contractor,"Removes, handles, and disposes of hazardous materials including asbestos and lead.",hazmat,icons\trades\hazmat.svg

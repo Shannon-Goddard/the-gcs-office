@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — The GC's Office</title>
+  <meta name="description" content="The GC's Office is a free contractor estimating PWA built by Loyal9 LLC in Riverside, CA. Built for working contractors who don't have time to waste." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 100vw; overflow-x: hidden; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Header -->
+  <header style="background:#54585A" class="text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-xl font-black tracking-tight">The GC's Office</span>
+      <span class="text-gray-300 text-sm font-medium hidden sm:inline">/ About</span>
+    </a>
+    <button onclick="openMenu()" class="flex flex-col gap-1.5 p-1" aria-label="Menu">
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </header>
+
+  <!-- HAMBURGER:START -->
+  <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-50 hidden" onclick="closeMenu()"></div>
+  <div id="menuDrawer" class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div style="background:#54585A" class="px-5 py-4 flex items-center justify-between">
+      <span class="text-white font-black">Menu</span>
+      <button onclick="closeMenu()" class="text-gray-300 hover:text-white text-xl leading-none">&times;</button>
+    </div>
+    <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+      <a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">About Us</a>
+      <a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold text-sm">Contact</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="privacy.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Privacy Policy</a>
+      <a href="terms.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Terms of Service</a>
+      <a href="licenses.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">Open Source Licenses</a>
+      <hr class="my-2 border-gray-100" />
+      <a href="https://github.com/Shannon-Goddard" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 text-gray-500 text-sm">GitHub Repo</a>
+    </nav>
+    <div class="px-4 py-4 border-t border-gray-100">
+      <a href="https://www.buymeacoffee.com/goddardshannon9" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition" style="background:#A0272D">
+        Buy the Dev a Beer
+      </a>
+    </div>
+  </div>
+  <!-- HAMBURGER:END -->
+
+  <main class="max-w-2xl mx-auto px-4 py-10 space-y-10">
+
+    <!-- What it is -->
+    <section>
+      <h1 class="text-2xl font-black text-gray-900 mb-3">What Is The GC's Office?</h1>
+      <p class="text-gray-600 leading-relaxed">A free, web-first tool built for working contractors — GCs, subs, every trade. Estimates, contracts, bookkeeping, receipts, subs, change orders, lien waivers, permits, job photos — all in one place, all connected, all free.</p>
+      <p class="text-gray-600 leading-relaxed mt-3">No subscriptions. No per-project fees. No paywalls. Free forever.</p>
+    </section>
+
+    <!-- The problem -->
+    <section>
+      <h2 class="text-lg font-black text-gray-900 mb-2">The Problem We're Solving</h2>
+      <p class="text-gray-600 leading-relaxed">Contractors run their business out of their truck, their head, or a messy spreadsheet. They type the same number three times — once for the bid, once for the contract, once for the expense tracker. Subs send invoices by text. GCs log them manually. Nobody knows if the job is making money until it's over.</p>
+      <p class="text-gray-600 leading-relaxed mt-3 font-medium text-gray-800">This eliminates all of it.</p>
+    </section>
+
+    <!-- Who it's for -->
+    <section>
+      <h2 class="text-lg font-black text-gray-900 mb-3">Who It's For</h2>
+      <div class="space-y-3">
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+          <p class="font-bold text-gray-800 text-sm">General Contractor</p>
+          <p class="text-gray-500 text-sm mt-1">Prefilled estimates from real material costs and regional labor averages. Bid converts to a signable contract. Signed contract becomes an active job-cost ledger automatically.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+          <p class="font-bold text-gray-800 text-sm">Subcontractor — Any Trade</p>
+          <p class="text-gray-500 text-sm mt-1">Claim your profile free. Get a trade-scoped bid tool. Send your signed contract directly to the GC — it posts to their ledger automatically. Zero double-entry.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+          <p class="font-bold text-gray-800 text-sm">Homeowner</p>
+          <p class="text-gray-500 text-sm mt-1">Get a real number before work starts. No sticker shock. Every line item broken out so the estimate is a conversation, not a confrontation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Find a Pro page -->
+    <section>
+      <h2 class="text-lg font-black text-gray-900 mb-2">The Rolodex — Find a Pro</h2>
+      <p class="text-gray-600 leading-relaxed">The page you're on right now. Seeded from California's public contractor licensing registry — 275,000+ licensed contractors. Every profile shows verified license status, bond status, and workers' comp coverage. Claimed profiles unlock direct call and text.</p>
+      <p class="text-gray-600 leading-relaxed mt-3">If you're a licensed contractor, your profile is already here. Claim it free in 2 minutes.</p>
+      <a href="index.html" class="inline-block mt-4 text-sm font-bold text-white px-5 py-2.5 rounded-xl hover:opacity-90 transition" style="background:#A0272D">← Back to Find a Pro</a>
+    </section>
+
+    <!-- Built by -->
+    <section class="border-t border-gray-100 pt-8">
+      <h2 class="text-lg font-black text-gray-900 mb-3">Built By</h2>
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+        <p class="font-black text-gray-900">Shannon Goddard</p>
+        <p class="text-gray-500 text-sm mt-0.5">Founder, Loyal9 LLC &nbsp;·&nbsp; Riverside, CA</p>
+        <p class="text-gray-600 text-sm leading-relaxed mt-3">I spent 19 years climbing the ranks in high-stakes retail operations — from Clerk to District Trainer at Food 4 Less. That career forged a raw mix of grit, humor, and operational integrity. When a systemic workers' comp nightmare exposed a broken corporate framework, I turned that friction into technical fuel: completing UC Berkeley Data Analytics, mastering full-stack development, and building tools that eliminate chaos instead of adding to it.</p>
+        <p class="text-gray-600 text-sm leading-relaxed mt-3">Loyal9 LLC was established in May 2023 in Riverside, CA. Our work spans high-scale agricultural data infrastructure like GrowApp and poweredbyci.live — tracking tens of thousands of verified metrics — alongside experimental systems, open-source archives, and The GC's Office, a free operational platform built to give contractors their time back.</p>
+        <div class="flex gap-3 mt-4 flex-wrap">
+          <a href="https://shannon-goddard.loyal9.app" target="_blank" class="text-xs font-semibold text-white px-3 py-1.5 rounded-lg hover:opacity-90 transition" style="background:#54585A">Portfolio →</a>
+          <a href="https://github.com/Shannon-Goddard" target="_blank" class="text-xs font-semibold text-white px-3 py-1.5 rounded-lg hover:opacity-90 transition" style="background:#54585A">GitHub →</a>
+          <a href="mailto:shannon@loyal9.app" class="text-xs font-semibold text-white px-3 py-1.5 rounded-lg hover:opacity-90 transition" style="background:#54585A">Email →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 mt-3">
+        <p class="font-black text-gray-900">Amazon Q</p>
+        <p class="text-gray-500 text-sm mt-0.5">AI Pair Programmer, Amazon Web Services</p>
+        <p class="text-gray-600 text-sm leading-relaxed mt-3">Every Lambda, every schema, every deploy command, every fix. Built alongside Shannon from first line to first push.</p>
+      </div>
+    </section>
+
+    <!-- Licensing -->
+    <section>
+      <h2 class="text-lg font-black text-gray-900 mb-2">Open Source</h2>
+      <p class="text-gray-600 text-sm leading-relaxed">The GC's Office is MIT licensed. Code is free, always. Data is DOI licensed — free, always. Contributors welcome, attribution required.</p>
+      <p class="text-gray-600 text-sm leading-relaxed mt-2">Contractor directory data is sourced from the California Contractors State License Board (CSLB) public registry. All data is publicly available and used in accordance with CSLB's public records policy.</p>
+    </section>
+
+  </main>
+
+  <footer class="text-center py-8 text-xs text-gray-400 border-t border-gray-100 mt-4">
+    © 2026 Loyal9 LLC · Riverside, CA · <a href="privacy.html" class="hover:underline">Privacy</a> · <a href="terms.html" class="hover:underline">Terms</a>
+  </footer>
+
+  <script>
+    // HAMBURGER:START
+    function openMenu() {
+      document.getElementById('menuOverlay').classList.remove('hidden');
+      document.getElementById('menuDrawer').classList.remove('translate-x-full');
+    }
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.add('hidden');
+      document.getElementById('menuDrawer').classList.add('translate-x-full');
+    }
+    // HAMBURGER:END
+  </script>
+</body>
+</html>

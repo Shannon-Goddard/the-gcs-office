@@ -1,0 +1,12 @@
+.env
+*.env
+data/raw/
+data/ca/ca_licensed_contractors.csv
+samconfig.toml
+__pycache__/
+*.pyc
+.playwright/
+
+# Keep transformed data in repo — CSV + JSON are the public dataset
+!data/transformed/*.csv
+!data/transformed/*.json
