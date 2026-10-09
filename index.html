@@ -382,7 +382,7 @@
       const licenseBadge = `<span class="text-xs text-green-600 font-medium">✓ Licensed</span>`;
       const bondBadge = c.is_bonded ? `<span class="text-xs text-green-600 font-medium">✓ Bonded</span>` : '';
       const wcBadge   = c.is_wc_covered ? `<span class="text-xs text-green-600 font-medium">✓ Insured</span>` : '';
-      const callRow = c.claimed && c.phone ? `<div class="flex gap-2"><a href="tel:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition">Call</a><a href="sms:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition">Text</a></div>` : '';
+      const callRow = c.phone ? `<div class="flex gap-2"><a href="tel:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition">Call</a><a href="sms:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition">Text</a></div>` : '';
       const claimBtn  = `<button onclick="openClaimModal('${c.license}')" class="w-full text-xs font-semibold py-1 hover:underline" style="color:#A0272D">Is this you? Claim it free →</button>`;
       return `
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden ${c.claimed?'':'grayscale-card'}" data-trade="${trade}">

@@ -107,6 +107,7 @@ def build_item(row):
         'expiration_date':row.get('ExpirationDate', '').strip(),
         'is_bonded':      is_bonded(row),
         'is_wc_covered':  is_wc_covered(row),
+        'phone':          row.get('PhoneNumber', '').strip(),
         'claimed':        False,
         'source_url':     row.get('\ufeffsource_url', row.get('source_url', '')).strip(),
         'seeded_at':      datetime.utcnow().isoformat(),
