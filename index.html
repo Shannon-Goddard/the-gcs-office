@@ -16,6 +16,8 @@
   <meta name="twitter:image" content="https://shannon-goddard.github.io/the-gcs-office/img/preview.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2354585A'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='20' font-family='system-ui' font-weight='900' fill='white'>G</text></svg>" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root {
       --brand: #54585A;
@@ -190,12 +192,19 @@
     </div>
   </div>
 
-  <!-- Results count -->
-  <div class="px-4 py-2 text-sm text-gray-500" id="resultsCount"></div>
+  <!-- Results count + view toggle -->
+  <div class="px-4 py-2 text-sm text-gray-500 flex items-center justify-between" id="resultsCount">
+    <span id="resultsLabel"></span>
+    <div class="flex gap-1">
+      <button onclick="setView('list')" id="btnList" class="text-xs font-bold px-3 py-1 rounded-full bg-gray-900 text-white transition">List</button>
+      <button onclick="setView('map')" id="btnMap" class="text-xs font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-600 transition">Map</button>
+    </div>
+  </div>
 
   <!-- Card grid -->
   <main class="px-4 pb-24 max-w-5xl mx-auto w-full">
     <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2"></div>
+    <div id="mapView" style="display:none;height:520px;" class="mt-2 rounded-xl overflow-hidden border border-gray-200"></div>
     <div class="text-center mt-8" id="loadMoreWrap" style="display:none">
       <button onclick="loadMore()" class="bg-white border border-gray-200 text-gray-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-50 transition shadow-sm">
         Load more contractors
@@ -346,13 +355,62 @@
     let currentTrade   = 'all';
     let lastKey        = null;
     let claimCountdown = null;
+    let currentView    = 'list';
+    let leafletMap     = null;
+    let zipLatLon      = null;
+    let lastContractors = [];
+
+    async function getZipLatLon() {
+      if (zipLatLon) return zipLatLon;
+      const r = await fetch('data/ca_zip_latlon.json');
+      zipLatLon = await r.json();
+      return zipLatLon;
+    }
+
+    function setView(view) {
+      currentView = view;
+      document.getElementById('cardGrid').style.display   = view === 'list' ? '' : 'none';
+      document.getElementById('mapView').style.display    = view === 'map'  ? '' : 'none';
+      document.getElementById('loadMoreWrap').style.display = view === 'list' && lastKey ? 'block' : 'none';
+      document.getElementById('btnList').className = `text-xs font-bold px-3 py-1 rounded-full transition ${view==='list'?'bg-gray-900 text-white':'bg-gray-100 text-gray-600'}`;
+      document.getElementById('btnMap').className  = `text-xs font-bold px-3 py-1 rounded-full transition ${view==='map' ?'bg-gray-900 text-white':'bg-gray-100 text-gray-600'}`;
+      if (view === 'map') renderMap(lastContractors);
+    }
+
+    async function renderMap(contractors) {
+      const lookup = await getZipLatLon();
+      const el = document.getElementById('mapView');
+      if (!leafletMap) {
+        leafletMap = L.map('mapView');
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(leafletMap);
+      } else {
+        leafletMap.eachLayer(l => { if (l instanceof L.Marker) leafletMap.removeLayer(l); });
+      }
+      const bounds = [];
+      contractors.forEach(c => {
+        const ll = lookup[c.zip];
+        if (!ll) return;
+        const jitter = (Math.random() - 0.5) * 0.008;
+        const pos = [ll[0] + jitter, ll[1] + jitter];
+        bounds.push(pos);
+        const popup = `
+          <div style="min-width:160px">
+            <p style="font-weight:800;margin:0 0 2px">${c.name}</p>
+            <p style="font-size:0.75rem;color:#6b7280;margin:0 0 6px">${c.trade} · ${c.city}</p>
+            ${c.phone ? `<a href="tel:${c.phone}" style="display:inline-block;background:#A0272D;color:#fff;font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:8px;text-decoration:none;margin-right:4px">Call</a><a href="sms:${c.phone}" style="display:inline-block;background:#A0272D;color:#fff;font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:8px;text-decoration:none">Text</a>` : '<p style="font-size:0.7rem;color:#9ca3af">Unclaimed — no phone</p>'}
+          </div>`;
+        L.marker(pos).addTo(leafletMap).bindPopup(popup);
+      });
+      if (bounds.length) leafletMap.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
+    }
 
     // ── Directory ─────────────────────────────────────────────────────────
     async function fetchContractors(zip, trade, append = false) {
       const grid    = document.getElementById('cardGrid');
-      const countEl = document.getElementById('resultsCount');
       const moreBtn = document.getElementById('loadMoreWrap');
-      if (!append) { grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Loading contractors…</div>'; lastKey = null; }
+      if (!append) { grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Loading contractors…</div>'; lastKey = null; lastContractors = []; }
       try {
         let url = `${API}/api/contractors?zip=${zip}&trade=${trade}`;
         if (append && lastKey) url += `&lastKey=${encodeURIComponent(lastKey)}`;
@@ -365,10 +423,12 @@
           return;
         }
         data.contractors.forEach(c => grid.insertAdjacentHTML('beforeend', renderCard(c)));
+        lastContractors = append ? lastContractors.concat(data.contractors) : data.contractors;
         lastKey = data.lastKey || null;
-        moreBtn.style.display = lastKey ? 'block' : 'none';
+        moreBtn.style.display = lastKey && currentView === 'list' ? 'block' : 'none';
         const label = trade === 'all' ? 'All Trades' : trade.charAt(0).toUpperCase() + trade.slice(1);
-        countEl.textContent = `Showing ${grid.children.length} contractors near ${zip} — ${label}`;
+        document.getElementById('resultsLabel').textContent = `Showing ${grid.children.length} contractors near ${zip} — ${label}`;
+        if (currentView === 'map') renderMap(lastContractors);
       } catch(e) {
         console.error(e);
         if (!append) grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Could not load contractors. Please try again.</div>';
