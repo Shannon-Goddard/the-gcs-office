@@ -194,7 +194,8 @@
 
     // ── Seed demo data on first load ───────────────────────────────────────
     function seedDemo() {
-      if (loadGuys().length) return;
+      if (localStorage.getItem('gcoffice_seeded')) return;
+      localStorage.setItem('gcoffice_seeded', '1');
       const demo = [
         { id: 1, name: 'John Rivera', company: 'Rivera Construction', trade: 'general',
           phone: '9515551234', email: 'john@riveraconstruction.com',
