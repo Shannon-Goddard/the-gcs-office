@@ -108,6 +108,8 @@ def build_item(row):
         'is_bonded':      is_bonded(row),
         'is_wc_covered':  is_wc_covered(row),
         'phone':          row.get('PhoneNumber', '').strip(),
+        'lat':            row.get('lat', ''),
+        'lng':            row.get('lng', ''),
         'claimed':        False,
         'source_url':     row.get('\ufeffsource_url', row.get('source_url', '')).strip(),
         'seeded_at':      datetime.utcnow().isoformat(),

@@ -111,6 +111,8 @@ def serialize(item):
         'is_wc_covered':  bool(item.get('is_wc_covered', False)),
         'claimed':        bool(item.get('claimed', False)),
         'phone':          item.get('phone', ''),
+        'lat':            item.get('lat', ''),
+        'lng':            item.get('lng', ''),
         'source_url':     item.get('source_url', ''),
     }
 

@@ -357,15 +357,7 @@
     let claimCountdown = null;
     let currentView    = 'list';
     let leafletMap     = null;
-    let zipLatLon      = null;
     let lastContractors = [];
-
-    async function getZipLatLon() {
-      if (zipLatLon) return zipLatLon;
-      const r = await fetch('data/ca_zip_latlon.json');
-      zipLatLon = await r.json();
-      return zipLatLon;
-    }
 
     function setView(view) {
       currentView = view;
@@ -378,8 +370,6 @@
     }
 
     async function renderMap(contractors) {
-      const lookup = await getZipLatLon();
-      const el = document.getElementById('mapView');
       if (!leafletMap) {
         leafletMap = L.map('mapView');
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -390,10 +380,9 @@
       }
       const bounds = [];
       contractors.forEach(c => {
-        const ll = lookup[c.zip];
-        if (!ll) return;
+        if (!c.lat || !c.lng) return;
         const jitter = (Math.random() - 0.5) * 0.008;
-        const pos = [ll[0] + jitter, ll[1] + jitter];
+        const pos = [parseFloat(c.lat) + jitter, parseFloat(c.lng) + jitter];
         bounds.push(pos);
         const popup = `
           <div style="min-width:160px">
