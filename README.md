@@ -18,6 +18,7 @@ A public contractor directory and operational platform seeded from state licensi
 - Claimed profiles: full color, click-to-call, click-to-text, work photos, Vetted By wall
 - Unclaimed profiles: grayscale, public data only
 - Cards paginate 24 at a time via base64 `lastKey` token — Load More appends
+- List/Map toggle — Leaflet + OpenStreetMap, no API key, markers per contractor with call/text popup
 
 ### Claim Your Space
 - Enter license number + paste the gov URL showing your license
@@ -76,17 +77,21 @@ A public contractor directory and operational platform seeded from state licensi
 │   └── get-contractors/    # GET  /api/contractors
 │
 ├── scripts/
-│   └── seed_subs.py        # Seeds DynamoDB from CSLB CSV (275,390 rows)
+│   ├── seed_subs.py            # Seeds DynamoDB from CSLB CSV (275,390 rows)
+│   ├── build_zip_latlon.py     # Builds data/ca_zip_latlon.json from state_data.csv
+│   └── enrich_csv_latlon.py    # Adds lat/lng columns to ca_licensed_contractors.csv
 │
 ├── scraper/
 │   ├── hd_search.py        # Home Depot material cost scraper
 │   └── requirements.txt
 │
 ├── data/
-│   ├── license_guide.csv   # 76 CA license classifications → field names
+│   ├── license_guide.csv       # 76 CA license classifications → field names
+│   ├── ca_zip_latlon.json      # 2,377 CA zip → [lat, lng] pairs
+│   ├── state_data.csv          # City-level lat/lng + zip lists source data
 │   ├── labor_data.csv
 │   ├── material_cost.csv
-│   └── ca/riverside/       # Scraped material costs + permit fees
+│   └── ca/riverside/           # Scraped material costs + permit fees
 │
 └── icons/
     ├── trades/             # 31 trade SVGs
@@ -106,7 +111,7 @@ Base URL: `https://8bvjb1qz6g.execute-api.us-east-1.amazonaws.com/prod`
 | POST | `/api/verify-wc` | `{ url }` | `{ match, banned }` |
 | GET | `/api/card-upload-url` | — | `{ url, key }` — presigned S3 PUT URL |
 | POST | `/api/scan-card` | `{ key }` | `{ name, phone, email, company }` |
-| GET | `/api/contractors` | `?zip=92504&trade=plumbing&lastKey=...` | `{ contractors[], lastKey }` |
+| GET | `/api/contractors` | `?zip=92504&trade=plumbing&lastKey=...` | `{ contractors[], lastKey }` — includes `lat`, `lng` per record |
 
 Bond numbers are matched on the page and discarded — never stored.
 
@@ -123,6 +128,8 @@ Bond numbers are matched on the page and discarded — never stored.
 | `gsi_zip_trade` | `ZIP#92504#TRADE#plumbing` |
 
 GSI `zip-trade-index` powers the directory filter by zip + trade.
+
+Each record also stores `phone`, `lat`, and `lng` — seeded from CSLB CSV + zip centroid lookup (95% coverage).
 
 ---
 
@@ -144,7 +151,38 @@ python scripts/seed_subs.py
 ```
 
 Reads `data/ca/ca_licensed_contractors.csv` (not in repo — source from CSLB).
-Writes 275,390 rows to DynamoDB in ~17 minutes. Computes `is_bonded` and `is_wc_covered` at seed time.
+Writes 275,390 rows to DynamoDB in ~17 minutes. Computes `is_bonded`, `is_wc_covered`, `phone`, `lat`, and `lng` at seed time.
+
+### Enrich lat/lng
+
+```bash
+python scripts/build_zip_latlon.py   # builds data/ca_zip_latlon.json
+python scripts/enrich_csv_latlon.py  # adds lat/lng columns to CSV
+```
+
+262,054 of 275,390 rows matched (95%). Unmatched are PO boxes, military, or out-of-state zips.
+
+---
+
+## Deploy Lambda
+
+Bump the image tag in `template.yaml` (`:v2` → `:v3`, etc.) on each deploy so SAM detects the change.
+
+```bash
+# 1. Login to ECR
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.us-east-1.amazonaws.com
+
+# 2. Build and push (bump tag each time)
+docker buildx build --platform linux/amd64 --provenance=false \
+  -t <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2 \
+  lambda/ --push
+
+# 3. Deploy
+sam deploy --stack-name gcoffice-verify \
+  --image-repository <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify \
+  --parameter-overrides "BrightDataSbUrl=<value> CardScanBucket=gcoffice-card-scans" \
+  --capabilities CAPABILITY_IAM --region us-east-1 --no-confirm-changeset
+```
 
 ---
 
