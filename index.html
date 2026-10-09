@@ -373,11 +373,9 @@
       const trade      = c.trade || 'general';
       const tradeLabel = trade.charAt(0).toUpperCase() + trade.slice(1);
       const statusColor = (c.status||'').toUpperCase() === 'CLEAR' ? 'text-green-600' : 'text-yellow-600';
-      const licenseBadge = c.source_url
-        ? `<a href="${c.source_url}" target="_blank" class="flex items-center gap-1 text-xs text-green-600 font-medium hover:underline"><img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed</a>`
-        : `<span class="flex items-center gap-1 text-xs text-green-600 font-medium"><img src="icons/docs/license.svg" class="w-4 h-4" /> Licensed</span>`;
-      const bondBadge = `<span class="flex items-center gap-1 text-xs ${c.is_bonded?'text-green-600':'text-gray-400'} font-medium"><img src="icons/docs/bonded.svg" class="w-4 h-4 ${c.is_bonded?'':'opacity-30'}" /> Bonded</span>`;
-      const wcBadge   = `<span class="flex items-center gap-1 text-xs ${c.is_wc_covered?'text-green-600':'text-gray-400'} font-medium"><img src="icons/docs/wc-insurance.svg" class="w-4 h-4 ${c.is_wc_covered?'':'opacity-30'}" /> Insured</span>`;
+      const licenseBadge = `<span class="text-xs text-green-600 font-medium">✓ Licensed</span>`;
+      const bondBadge = c.is_bonded ? `<span class="text-xs text-green-600 font-medium">✓ Bonded</span>` : '';
+      const wcBadge   = c.is_wc_covered ? `<span class="text-xs text-green-600 font-medium">✓ Insured</span>` : '';
       const callRow   = c.claimed && c.phone ? `<div class="flex gap-2"><a href="tel:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5"><img src="icons/phone-white.svg" class="w-4 h-4" /> Call</a><a href="sms:${c.phone}" style="background:#A0272D" class="flex-1 text-white text-sm font-bold py-2 rounded-xl text-center hover:opacity-90 transition flex items-center justify-center gap-1.5"><img src="icons/text-white.svg" class="w-4 h-4" /> Text</a></div>` : '';
       const claimBtn  = `<button onclick="openClaimModal('${c.license}')" class="w-full text-xs font-semibold py-1 hover:underline" style="color:#A0272D">Is this you? Claim it free →</button>`;
       return `
