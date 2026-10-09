@@ -13,9 +13,11 @@ A public contractor directory and operational platform seeded from state licensi
 ### The Rolodex — Find a Pro
 - 275,390+ CA licensed contractors seeded from the CSLB public registry
 - Filter by 31 trades, search by zip or location
-- License, bond, and WC badges linked to government source URLs
+- My Location button — Nominatim reverse geocode → real zip → live results
+- License, bond, and WC badges green/gray from real `is_bonded` / `is_wc_covered` DynamoDB fields
 - Claimed profiles: full color, click-to-call, click-to-text, work photos, Vetted By wall
 - Unclaimed profiles: grayscale, public data only
+- Cards paginate 24 at a time via base64 `lastKey` token — Load More appends
 
 ### Claim Your Space
 - Enter license number + paste the gov URL showing your license
@@ -64,13 +66,14 @@ A public contractor directory and operational platform seeded from state licensi
 ├── template.yaml           # SAM template — all Lambda functions + API Gateway
 │
 ├── lambda/
-│   ├── Dockerfile          # Single image, all 5 handlers
+│   ├── Dockerfile          # Single image, all 6 handlers
 │   ├── requirements.txt    # playwright, boto3
 │   ├── verify-license/     # POST /api/verify-license
 │   ├── verify-bond/        # POST /api/verify-bond
 │   ├── verify-wc/          # POST /api/verify-wc
 │   ├── get-upload-url/     # GET  /api/card-upload-url
-│   └── scan-card/          # POST /api/scan-card
+│   ├── scan-card/          # POST /api/scan-card
+│   └── get-contractors/    # GET  /api/contractors
 │
 ├── scripts/
 │   └── seed_subs.py        # Seeds DynamoDB from CSLB CSV (275,390 rows)
@@ -103,6 +106,7 @@ Base URL: `https://8bvjb1qz6g.execute-api.us-east-1.amazonaws.com/prod`
 | POST | `/api/verify-wc` | `{ url }` | `{ match, banned }` |
 | GET | `/api/card-upload-url` | — | `{ url, key }` — presigned S3 PUT URL |
 | POST | `/api/scan-card` | `{ key }` | `{ name, phone, email, company }` |
+| GET | `/api/contractors` | `?zip=92504&trade=plumbing&lastKey=...` | `{ contractors[], lastKey }` |
 
 Bond numbers are matched on the page and discarded — never stored.
 
