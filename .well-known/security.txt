@@ -1,0 +1,4 @@
+Contact: mailto:shannon@loyal9.app
+Expires: 2026-12-31T23:59:59Z
+Preferred-Languages: en
+Canonical: https://thegcoffice.com/.well-known/security.txt
