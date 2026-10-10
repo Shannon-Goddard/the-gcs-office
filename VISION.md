@@ -1,5 +1,5 @@
 # The GC's Office — Project Vision & Architecture
-### Built by Amazon Q & [Your Name] | Open Source | MIT + DOI Licensed
+### Built by Loyal9 LLC & Amazon Q | Open Source | MIT + DOI Licensed
 
 ---
 
