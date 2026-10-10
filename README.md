@@ -79,7 +79,8 @@ A public contractor directory and operational platform seeded from state licensi
 ├── scripts/
 │   ├── seed_subs.py            # Seeds DynamoDB from CSLB CSV (275,390 rows)
 │   ├── build_zip_latlon.py     # Builds data/ca_zip_latlon.json from state_data.csv
-│   └── enrich_csv_latlon.py    # Adds lat/lng columns to ca_licensed_contractors.csv
+│   ├── enrich_csv_latlon.py    # Adds lat/lng columns to ca_licensed_contractors.csv
+│   └── geocode_addresses.py    # Street-level geocoding via US Census Geocoder batch API
 │
 ├── scraper/
 │   ├── hd_search.py        # Home Depot material cost scraper
@@ -161,6 +162,14 @@ python scripts/enrich_csv_latlon.py  # adds lat/lng columns to CSV
 ```
 
 262,054 of 275,390 rows matched (95%). Unmatched are PO boxes, military, or out-of-state zips.
+
+### Geocode Street Addresses
+
+```bash
+python scripts/geocode_addresses.py
+```
+
+Uses the free US Census Geocoder batch API — no key, no cost. Sends 9,999 addresses per batch, writes progress after each batch. 231,969 of 240,270 real addresses matched (96.5%). PO boxes are skipped automatically.
 
 ---
 
