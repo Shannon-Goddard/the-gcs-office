@@ -6,6 +6,7 @@ samconfig.toml
 __pycache__/
 *.pyc
 .playwright/
+node_modules/
 
 # Keep transformed data in repo — CSV + JSON are the public dataset
 !data/transformed/*.csv

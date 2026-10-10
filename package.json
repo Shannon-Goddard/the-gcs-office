@@ -1,0 +1,26 @@
+{
+  "name": "home-depot",
+  "version": "1.0.0",
+  "description": "**Free. Web-first. Built for working contractors.**",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i css/input.css -o css/styles.css --minify",
+    "watch": "npx @tailwindcss/cli -i css/input.css -o css/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shannon-Goddard/the-gcs-office.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shannon-Goddard/the-gcs-office/issues"
+  },
+  "homepage": "https://github.com/Shannon-Goddard/the-gcs-office#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
