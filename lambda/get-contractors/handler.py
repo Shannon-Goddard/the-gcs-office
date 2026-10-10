@@ -80,7 +80,7 @@ def query_trade(zip_code, trade, last_key_token=None):
 
 
 def query_all_trades(zip_code, last_trade=None):
-    """Sample up to 2 contractors per trade. last_trade resumes from that trade onward."""
+    """5 contractors per trade, paginate by resuming after last_trade."""
     items = []
     resume = last_trade is None
     last_seen_trade = None
@@ -93,7 +93,7 @@ def query_all_trades(zip_code, last_trade=None):
         resp = table.query(
             IndexName='zip-trade-index',
             KeyConditionExpression=Key('gsi_zip_trade').eq(gsi_key),
-            Limit=2,
+            Limit=5,
         )
         items.extend(resp.get('Items', []))
         last_seen_trade = trade

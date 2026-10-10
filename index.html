@@ -86,12 +86,13 @@
   </div>
   <!-- HAMBURGER:END -->
   <div class="bg-white border-b border-gray-200 px-4 py-2 text-sm">
-    <div class="text-gray-600 mb-1.5">📍 Showing contractors near <strong id="currentLocation">Riverside, CA</strong></div>
+    <div class="text-gray-600 mb-1.5">Showing contractors near <strong id="currentLocation">Riverside, CA</strong></div>
+    <div id="locError" class="hidden text-xs text-red-500 mb-1"></div>
     <div class="flex gap-2">
       <input id="zipInput" type="text" placeholder="Zip code" maxlength="5"
         class="border border-gray-300 rounded px-2 py-1 text-sm w-24 focus:outline-none focus:ring-1 focus:ring-red-400" />
       <button onclick="updateZip()" style="background:#A0272D" class="text-white text-xs font-bold px-3 py-1 rounded hover:opacity-90 transition">Go</button>
-      <button onclick="useMyLocation()" class="border border-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded hover:bg-gray-100 transition">📍 My Location</button>
+      <button onclick="useMyLocation()" id="locBtn" class="border border-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded hover:bg-gray-100 transition">My Location</button>
     </div>
   </div>
 
@@ -205,11 +206,7 @@
   <main class="px-4 pb-24 max-w-5xl mx-auto w-full">
     <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2"></div>
     <div id="mapView" style="display:none;height:520px;" class="mt-2 rounded-xl overflow-hidden border border-gray-200"></div>
-    <div class="text-center mt-8" id="loadMoreWrap" style="display:none">
-      <button onclick="loadMore()" class="bg-white border border-gray-200 text-gray-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-50 transition shadow-sm">
-        Load more contractors
-      </button>
-    </div>
+    <div id="scrollSentinel" class="h-10"></div>
   </main>
 
   <!-- My Guy FAB -->
@@ -358,12 +355,12 @@
     let currentView    = 'list';
     let leafletMap     = null;
     let lastContractors = [];
+    let isFetching     = false;
 
     function setView(view) {
       currentView = view;
-      document.getElementById('cardGrid').style.display   = view === 'list' ? '' : 'none';
-      document.getElementById('mapView').style.display    = view === 'map'  ? '' : 'none';
-      document.getElementById('loadMoreWrap').style.display = view === 'list' && lastKey ? 'block' : 'none';
+      document.getElementById('cardGrid').style.display = view === 'list' ? '' : 'none';
+      document.getElementById('mapView').style.display  = view === 'map'  ? '' : 'none';
       document.getElementById('btnList').className = `text-xs font-bold px-3 py-1 rounded-full transition ${view==='list'?'bg-gray-900 text-white':'bg-gray-100 text-gray-600'}`;
       document.getElementById('btnMap').className  = `text-xs font-bold px-3 py-1 rounded-full transition ${view==='map' ?'bg-gray-900 text-white':'bg-gray-100 text-gray-600'}`;
       if (view === 'map') renderMap(lastContractors);
@@ -397,8 +394,9 @@
 
     // ── Directory ─────────────────────────────────────────────────────────
     async function fetchContractors(zip, trade, append = false) {
-      const grid    = document.getElementById('cardGrid');
-      const moreBtn = document.getElementById('loadMoreWrap');
+      if (isFetching) return;
+      isFetching = true;
+      const grid = document.getElementById('cardGrid');
       if (!append) { grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Loading contractors…</div>'; lastKey = null; lastContractors = []; }
       try {
         let url = `${API}/api/contractors?zip=${zip}&trade=${trade}`;
@@ -408,13 +406,12 @@
         if (!append) grid.innerHTML = '';
         if (!data.contractors || !data.contractors.length) {
           if (!append) grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">No contractors found for this area and trade.</div>';
-          moreBtn.style.display = 'none';
+          isFetching = false;
           return;
         }
         data.contractors.forEach(c => grid.insertAdjacentHTML('beforeend', renderCard(c)));
         lastContractors = append ? lastContractors.concat(data.contractors) : data.contractors;
         lastKey = data.lastKey || null;
-        moreBtn.style.display = lastKey && currentView === 'list' ? 'block' : 'none';
         const label = trade === 'all' ? 'All Trades' : trade.charAt(0).toUpperCase() + trade.slice(1);
         document.getElementById('resultsLabel').textContent = `Showing ${grid.children.length} contractors near ${zip} — ${label}`;
         if (currentView === 'map') renderMap(lastContractors);
@@ -422,6 +419,7 @@
         console.error(e);
         if (!append) grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Could not load contractors. Please try again.</div>';
       }
+      isFetching = false;
     }
 
     function renderCard(c) {
@@ -498,25 +496,59 @@
     }
 
     function useMyLocation() {
-      if (!navigator.geolocation) return;
-      navigator.geolocation.getCurrentPosition(async pos => {
-        try {
-          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
-          const d = await r.json();
-          const zip = d.address?.postcode?.slice(0,5);
-          if (zip) {
-            currentZip = zip;
-            document.getElementById('zipInput').value = zip;
-            document.getElementById('currentLocation').textContent = d.address?.city || zip;
-            fetchContractors(currentZip, currentTrade);
+      const errEl = document.getElementById('locError');
+      const btn   = document.getElementById('locBtn');
+      errEl.classList.add('hidden');
+      if (!navigator.geolocation) {
+        errEl.textContent = 'Geolocation not supported by this browser.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      btn.textContent = 'Locating…';
+      btn.disabled = true;
+      navigator.geolocation.getCurrentPosition(
+        async pos => {
+          try {
+            const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
+            const d = await r.json();
+            const zip = d.address?.postcode?.slice(0,5);
+            if (zip) {
+              currentZip = zip;
+              document.getElementById('zipInput').value = zip;
+              document.getElementById('currentLocation').textContent = d.address?.city || d.address?.town || zip;
+              fetchContractors(currentZip, currentTrade);
+            } else {
+              errEl.textContent = 'Could not determine zip from your location.';
+              errEl.classList.remove('hidden');
+            }
+          } catch {
+            errEl.textContent = 'Location lookup failed. Enter zip manually.';
+            errEl.classList.remove('hidden');
           }
-        } catch { /* silently fall back */ }
-      });
+          btn.textContent = 'My Location';
+          btn.disabled = false;
+        },
+        err => {
+          const msgs = { 1: 'Location permission denied.', 2: 'Location unavailable.', 3: 'Location request timed out.' };
+          errEl.textContent = msgs[err.code] || 'Location failed.';
+          errEl.classList.remove('hidden');
+          btn.textContent = 'My Location';
+          btn.disabled = false;
+        },
+        { timeout: 10000 }
+      );
     }
 
-    function loadMore() { fetchContractors(currentZip, currentTrade, true); }
-
     fetchContractors(currentZip, currentTrade);
+
+    // Infinite scroll
+    const sentinel = document.getElementById('scrollSentinel');
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && lastKey && !isFetching && currentView === 'list') {
+        fetchContractors(currentZip, currentTrade, true);
+      }
+    }, { rootMargin: '200px' });
+    observer.observe(sentinel);
 
     function showStep(n) {
       ['step1','step2','step3','step4'].forEach((id, i) => {

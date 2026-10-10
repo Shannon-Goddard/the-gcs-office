@@ -201,24 +201,6 @@
       localStorage.setItem(STORE_KEY, JSON.stringify(guys));
     }
 
-    // ── Seed demo data on first load ───────────────────────────────────────
-    function seedDemo() {
-      if (localStorage.getItem('gcoffice_seeded')) return;
-      localStorage.setItem('gcoffice_seeded', '1');
-      const demo = [
-        { id: 1, name: 'John Rivera', company: 'Rivera Construction', trade: 'general',
-          phone: '9515551234', email: 'john@riveraconstruction.com',
-          notes: 'Reliable, good on commercial jobs', verified: true, added: '2025-01-10' },
-        { id: 2, name: 'Mike Torres', company: 'Torres Electric', trade: 'electrical',
-          phone: '9515559876', email: '',
-          notes: 'Fast, knows panel upgrades cold', verified: true, added: '2025-02-14' },
-        { id: 3, name: 'Carlos Mendez', company: '', trade: 'plumbing',
-          phone: '9515554321', email: 'carlos@mendezplumbing.net',
-          notes: '', verified: false, added: '2025-03-01' },
-      ];
-      saveGuys(demo);
-    }
-
     // ── Render ─────────────────────────────────────────────────────────────
     let activeFilter = 'all';
     let searchQuery  = '';
@@ -455,7 +437,6 @@
     }
 
     // ── Init ───────────────────────────────────────────────────────────────
-    seedDemo();
     renderRoster();
   </script>
 </body>
