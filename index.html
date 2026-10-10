@@ -16,8 +16,7 @@
   <meta name="twitter:image" content="https://thegcoffice.com/img/preview.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2354585A'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='20' font-family='system-ui' font-weight='900' fill='white'>G</text></svg>" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet loaded on demand when Map view is activated -->
   <style>
     :root {
       --brand: #54585A;
@@ -105,94 +104,94 @@
       <div class="flex gap-2 min-w-max">
       <button onclick="filterTrade('all')" class="trade-filter-btn bg-gray-900 text-white trade-pill" data-trade="all">All Trades</button>
       <button onclick="filterTrade('general')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="general">
-        <img src="icons/trades/general.svg" onerror="this.style.display='none'" /> General
+        <img src="icons/trades/general.svg" alt="General" onerror="this.style.display='none'" /> General
       </button>
       <button onclick="filterTrade('electrical')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="electrical">
-        <img src="icons/trades/electrical.svg" onerror="this.style.display='none'" /> Electrical
+        <img src="icons/trades/electrical.svg" alt="Electrical" onerror="this.style.display='none'" /> Electrical
       </button>
       <button onclick="filterTrade('plumbing')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="plumbing">
-        <img src="icons/trades/plumbing.svg" onerror="this.style.display='none'" /> Plumbing
+        <img src="icons/trades/plumbing.svg" alt="Plumbing" onerror="this.style.display='none'" /> Plumbing
       </button>
       <button onclick="filterTrade('hvac')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="hvac">
-        <img src="icons/trades/hvac.svg" onerror="this.style.display='none'" /> HVAC
+        <img src="icons/trades/hvac.svg" alt="HVAC" onerror="this.style.display='none'" /> HVAC
       </button>
       <button onclick="filterTrade('painting')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="painting">
-        <img src="icons/trades/painting.svg" onerror="this.style.display='none'" /> Painting
+        <img src="icons/trades/painting.svg" alt="Painting" onerror="this.style.display='none'" /> Painting
       </button>
       <button onclick="filterTrade('roofing')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="roofing">
-        <img src="icons/trades/roofing.svg" onerror="this.style.display='none'" /> Roofing
+        <img src="icons/trades/roofing.svg" alt="Roofing" onerror="this.style.display='none'" /> Roofing
       </button>
       <button onclick="filterTrade('flooring')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="flooring">
-        <img src="icons/trades/flooring.svg" onerror="this.style.display='none'" /> Flooring
+        <img src="icons/trades/flooring.svg" alt="Flooring" onerror="this.style.display='none'" /> Flooring
       </button>
       <button onclick="filterTrade('landscape')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="landscape">
-        <img src="icons/trades/landscape.svg" onerror="this.style.display='none'" /> Landscape
+        <img src="icons/trades/landscape.svg" alt="Landscape" onerror="this.style.display='none'" /> Landscape
       </button>
       <button onclick="filterTrade('framing')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="framing">
-        <img src="icons/trades/framing.svg" onerror="this.style.display='none'" /> Framing
+        <img src="icons/trades/framing.svg" alt="Framing" onerror="this.style.display='none'" /> Framing
       </button>
       <button onclick="filterTrade('carpentry')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="carpentry">
-        <img src="icons/trades/carpentry.svg" onerror="this.style.display='none'" /> Carpentry
+        <img src="icons/trades/carpentry.svg" alt="Carpentry" onerror="this.style.display='none'" /> Carpentry
       </button>
       <button onclick="filterTrade('concrete')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="concrete">
-        <img src="icons/trades/concrete.svg" onerror="this.style.display='none'" /> Concrete
+        <img src="icons/trades/concrete.svg" alt="Concrete" onerror="this.style.display='none'" /> Concrete
       </button>
       <button onclick="filterTrade('masonry')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="masonry">
-        <img src="icons/trades/masonry.svg" onerror="this.style.display='none'" /> Masonry
+        <img src="icons/trades/masonry.svg" alt="Masonry" onerror="this.style.display='none'" /> Masonry
       </button>
       <button onclick="filterTrade('drywall')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="drywall">
-        <img src="icons/trades/drywall.svg" onerror="this.style.display='none'" /> Drywall
+        <img src="icons/trades/drywall.svg" alt="Drywall" onerror="this.style.display='none'" /> Drywall
       </button>
       <button onclick="filterTrade('insulation')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="insulation">
-        <img src="icons/trades/insulation.svg" onerror="this.style.display='none'" /> Insulation
+        <img src="icons/trades/insulation.svg" alt="Insulation" onerror="this.style.display='none'" /> Insulation
       </button>
       <button onclick="filterTrade('plastering')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="plastering">
-        <img src="icons/trades/plastering.svg" onerror="this.style.display='none'" /> Plastering
+        <img src="icons/trades/plastering.svg" alt="Plastering" onerror="this.style.display='none'" /> Plastering
       </button>
       <button onclick="filterTrade('metal')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="metal">
-        <img src="icons/trades/metal.svg" onerror="this.style.display='none'" /> Metal
+        <img src="icons/trades/metal.svg" alt="Metal" onerror="this.style.display='none'" /> Metal
       </button>
       <button onclick="filterTrade('glazing')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="glazing">
-        <img src="icons/trades/glazing.svg" onerror="this.style.display='none'" /> Glazing
+        <img src="icons/trades/glazing.svg" alt="Glazing" onerror="this.style.display='none'" /> Glazing
       </button>
       <button onclick="filterTrade('fencing')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="fencing">
-        <img src="icons/trades/fencing.svg" onerror="this.style.display='none'" /> Fencing
+        <img src="icons/trades/fencing.svg" alt="Fencing" onerror="this.style.display='none'" /> Fencing
       </button>
       <button onclick="filterTrade('earthwork')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="earthwork">
-        <img src="icons/trades/earthwork.svg" onerror="this.style.display='none'" /> Earthwork
+        <img src="icons/trades/earthwork.svg" alt="Earthwork" onerror="this.style.display='none'" /> Earthwork
       </button>
       <button onclick="filterTrade('paving')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="paving">
-        <img src="icons/trades/paving.svg" onerror="this.style.display='none'" /> Paving
+        <img src="icons/trades/paving.svg" alt="Paving" onerror="this.style.display='none'" /> Paving
       </button>
       <button onclick="filterTrade('pipeline')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="pipeline">
-        <img src="icons/trades/pipeline.svg" onerror="this.style.display='none'" /> Pipeline
+        <img src="icons/trades/pipeline.svg" alt="Pipeline" onerror="this.style.display='none'" /> Pipeline
       </button>
       <button onclick="filterTrade('fire')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="fire">
-        <img src="icons/trades/fire.svg" onerror="this.style.display='none'" /> Fire Protection
+        <img src="icons/trades/fire.svg" alt="Fire Protection" onerror="this.style.display='none'" /> Fire Protection
       </button>
       <button onclick="filterTrade('security')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="security">
-        <img src="icons/trades/security.svg" onerror="this.style.display='none'" /> Security
+        <img src="icons/trades/security.svg" alt="Security" onerror="this.style.display='none'" /> Security
       </button>
       <button onclick="filterTrade('elevator')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="elevator">
-        <img src="icons/trades/elevator.svg" onerror="this.style.display='none'" /> Elevator
+        <img src="icons/trades/elevator.svg" alt="Elevator" onerror="this.style.display='none'" /> Elevator
       </button>
       <button onclick="filterTrade('solar')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="solar">
-        <img src="icons/trades/solar.svg" onerror="this.style.display='none'" /> Solar
+        <img src="icons/trades/solar.svg" alt="Solar" onerror="this.style.display='none'" /> Solar
       </button>
       <button onclick="filterTrade('pool')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="pool">
-        <img src="icons/trades/pool.svg" onerror="this.style.display='none'" /> Pool
+        <img src="icons/trades/pool.svg" alt="Pool" onerror="this.style.display='none'" /> Pool
       </button>
       <button onclick="filterTrade('signage')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="signage">
-        <img src="icons/trades/signage.svg" onerror="this.style.display='none'" /> Signage
+        <img src="icons/trades/signage.svg" alt="Signage" onerror="this.style.display='none'" /> Signage
       </button>
       <button onclick="filterTrade('demolition')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="demolition">
-        <img src="icons/trades/demolition.svg" onerror="this.style.display='none'" /> Demolition
+        <img src="icons/trades/demolition.svg" alt="Demolition" onerror="this.style.display='none'" /> Demolition
       </button>
       <button onclick="filterTrade('hazmat')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="hazmat">
-        <img src="icons/trades/hazmat.svg" onerror="this.style.display='none'" /> Hazmat
+        <img src="icons/trades/hazmat.svg" alt="Hazmat" onerror="this.style.display='none'" /> Hazmat
       </button>
       <button onclick="filterTrade('traffic')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="traffic">
-        <img src="icons/trades/traffic.svg" onerror="this.style.display='none'" /> Traffic Control
+        <img src="icons/trades/traffic.svg" alt="Traffic Control" onerror="this.style.display='none'" /> Traffic Control
       </button>
     </div>
     </div>
@@ -386,7 +385,24 @@
       if (view === 'map') renderMap(lastContractors);
     }
 
+    let leafletLoaded = false;
+    async function loadLeaflet() {
+      if (leafletLoaded) return;
+      await new Promise(resolve => {
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        document.head.appendChild(css);
+        const js = document.createElement('script');
+        js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        js.onload = resolve;
+        document.head.appendChild(js);
+      });
+      leafletLoaded = true;
+    }
+
     async function renderMap(contractors) {
+      await loadLeaflet();
       if (!leafletMap) {
         leafletMap = L.map('mapView');
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -462,11 +478,11 @@
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 flex-wrap">
                 <span class="font-bold ${c.claimed?'text-gray-900':'text-gray-700'} truncate">${c.name}</span>
-                ${c.claimed?'<span class="text-green-600 text-xs font-bold">✓ Verified</span>':'<span class="text-gray-400 text-xs">Unclaimed</span>'}
+                ${c.claimed?'<span class="text-green-600 text-xs font-bold">✓ Verified</span>':'<span class="text-gray-500 text-xs">Unclaimed</span>'}
               </div>
               <div class="flex items-center gap-1 mt-0.5">
-                <span class="trade-pill bg-gray-100 ${c.claimed?'text-gray-700':'text-gray-500'}"><img src="icons/trades/${trade}.svg" onerror="this.style.display='none'" /> ${tradeLabel}</span>
-                <span class="text-xs text-gray-400">${c.city}, ${c.state}</span>
+                <span class="trade-pill bg-gray-100 ${c.claimed?'text-gray-700':'text-gray-600'}"><img src="icons/trades/${trade}.svg" alt="${tradeLabel}" onerror="this.style.display='none'" /> ${tradeLabel}</span>
+                <span class="text-xs text-gray-500">${c.city}, ${c.state}</span>
               </div>
               <div class="flex items-center gap-2 mt-1.5">${licenseBadge}${bondBadge}${wcBadge}</div>
             </div>
