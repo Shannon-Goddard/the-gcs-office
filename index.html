@@ -36,6 +36,9 @@
     .modal-overlay.open { display: flex; }
     .countdown { display: none; }
     .countdown.visible { display: block; }
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+                background-size: 200% 100%; animation: shimmer 1.2s infinite; border-radius: 1rem; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -47,7 +50,7 @@
       <span class="text-gray-300 text-sm font-medium hidden sm:inline">/ Find a Pro</span>
     </div>
     <div class="flex items-center gap-4">
-      <button onclick="openClaimModal(null)" style="background:#A0272D" class="text-white text-sm font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition">
+      <button onclick="openClaimModal(null)" style="background:#A0272D" class="text-white text-sm font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition whitespace-nowrap">
         + Add Me
       </button>
       <button onclick="openMenu()" class="flex flex-col gap-1.5 p-1" aria-label="Menu">
@@ -85,20 +88,20 @@
     </div>
   </div>
   <!-- HAMBURGER:END -->
-  <div class="bg-white border-b border-gray-200 px-4 py-2 text-sm">
-    <div class="text-gray-600 mb-1.5">Showing contractors near <strong id="currentLocation">Riverside, CA</strong></div>
-    <div id="locError" class="hidden text-xs text-red-500 mb-1"></div>
-    <div class="flex gap-2">
-      <input id="zipInput" type="text" placeholder="Zip code" maxlength="5"
-        class="border border-gray-300 rounded px-2 py-1 text-sm w-24 focus:outline-none focus:ring-1 focus:ring-red-400" />
-      <button onclick="updateZip()" style="background:#A0272D" class="text-white text-xs font-bold px-3 py-1 rounded hover:opacity-90 transition">Go</button>
-      <button onclick="useMyLocation()" id="locBtn" class="border border-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded hover:bg-gray-100 transition">My Location</button>
+  <!-- Sticky filter block -->
+  <div class="sticky top-14 z-30 bg-white shadow-sm">
+    <div class="border-b border-gray-200 px-4 py-2 text-sm">
+      <div class="text-gray-600 mb-1.5">Showing contractors near <strong id="currentLocation">Riverside, CA</strong></div>
+      <div id="locError" class="hidden text-xs text-red-500 mb-1"></div>
+      <div class="flex gap-2">
+        <input id="zipInput" type="text" placeholder="Zip code" maxlength="5"
+          class="border border-gray-300 rounded px-2 py-1 text-sm w-24 focus:outline-none focus:ring-1 focus:ring-red-400" />
+        <button onclick="updateZip()" style="background:#A0272D" class="text-white text-xs font-bold px-3 py-1 rounded hover:opacity-90 transition">Go</button>
+        <button onclick="promptLocation()" id="locBtn" class="border border-gray-300 text-gray-600 text-xs font-bold px-3 py-1 rounded hover:bg-gray-100 transition">My Location</button>
+      </div>
     </div>
-  </div>
-
-  <!-- Trade filter bar -->
-  <div class="bg-white border-b px-4 py-3 overflow-x-auto">
-    <div class="flex gap-2 min-w-max">
+    <div class="border-b px-4 py-3 overflow-x-auto">
+      <div class="flex gap-2 min-w-max">
       <button onclick="filterTrade('all')" class="trade-filter-btn bg-gray-900 text-white trade-pill" data-trade="all">All Trades</button>
       <button onclick="filterTrade('general')" class="trade-filter-btn bg-gray-100 text-gray-700 trade-pill" data-trade="general">
         <img src="icons/trades/general.svg" onerror="this.style.display='none'" /> General
@@ -191,14 +194,14 @@
         <img src="icons/trades/traffic.svg" onerror="this.style.display='none'" /> Traffic Control
       </button>
     </div>
-  </div>
-
-  <!-- Results count + view toggle -->
-  <div class="px-4 py-2 text-sm text-gray-500 flex items-center justify-between" id="resultsCount">
-    <span id="resultsLabel"></span>
-    <div class="flex gap-1">
-      <button onclick="setView('list')" id="btnList" class="text-xs font-bold px-3 py-1 rounded-full bg-gray-900 text-white transition">List</button>
-      <button onclick="setView('map')" id="btnMap" class="text-xs font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-600 transition">Map</button>
+    </div>
+    <!-- Results count + view toggle -->
+    <div class="px-4 py-2 text-sm text-gray-500 flex items-center justify-between border-b border-gray-100" id="resultsCount">
+      <span id="resultsLabel"></span>
+      <div class="flex gap-1">
+        <button onclick="setView('list')" id="btnList" class="text-xs font-bold px-3 py-1 rounded-full bg-gray-900 text-white transition">List</button>
+        <button onclick="setView('map')" id="btnMap" class="text-xs font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-600 transition">Map</button>
+      </div>
     </div>
   </div>
 
@@ -213,6 +216,22 @@
   <a href="my-guy.html" style="background:#A0272D" class="fixed bottom-6 right-6 z-40 text-white text-sm font-bold px-5 py-3 rounded-full shadow-lg hover:opacity-90 transition flex items-center gap-2">
     My Guy
   </a>
+
+  <!-- Location permission modal -->
+  <div id="locModal" class="modal-overlay" onclick="closeLocModal(event)">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden" onclick="event.stopPropagation()">
+      <div style="background:#54585A" class="px-6 py-4">
+        <h2 class="text-white text-lg font-black">Allow Location</h2>
+        <p class="text-gray-300 text-sm mt-0.5">To show contractors near you</p>
+      </div>
+      <div class="p-6 space-y-4">
+        <p class="text-sm text-gray-600">Your browser will ask permission to access your location. This is used only to find your zip code — your location is never stored.</p>
+        <p class="text-xs text-gray-400">If you previously denied location access, go to your browser or phone Settings and allow location for this site.</p>
+        <button onclick="confirmLocation()" style="background:#A0272D" class="w-full text-white font-bold py-3 rounded-xl hover:opacity-90 transition text-sm">Allow &amp; Find My Location</button>
+        <button onclick="closeLocModal()" class="w-full text-gray-400 text-sm hover:text-gray-600">Cancel</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Claim Modal -->
   <div id="claimModal" class="modal-overlay" onclick="closeClaimModal(event)">
@@ -397,7 +416,10 @@
       if (isFetching) return;
       isFetching = true;
       const grid = document.getElementById('cardGrid');
-      if (!append) { grid.innerHTML = '<div class="col-span-3 text-center py-16 text-gray-400">Loading contractors…</div>'; lastKey = null; lastContractors = []; }
+      if (!append) {
+        grid.innerHTML = Array(6).fill('<div class="skeleton h-48"></div>').join('');
+        lastKey = null; lastContractors = [];
+      }
       try {
         let url = `${API}/api/contractors?zip=${zip}&trade=${trade}`;
         if (append && lastKey) url += `&lastKey=${encodeURIComponent(lastKey)}`;
@@ -495,7 +517,17 @@
       }
     }
 
-    function useMyLocation() {
+    function promptLocation() {
+      document.getElementById('locModal').classList.add('open');
+    }
+    function closeLocModal(e) {
+      if (e && e.target !== document.getElementById('locModal')) return;
+      document.getElementById('locModal').classList.remove('open');
+    }
+    function confirmLocation() {
+      document.getElementById('locModal').classList.remove('open');
+      useMyLocation();
+    }
       const errEl = document.getElementById('locError');
       const btn   = document.getElementById('locBtn');
       errEl.classList.add('hidden');
