@@ -838,4 +838,33 @@ PWA first:
 
 ---
 
+## Infrastructure — Final Step: Cloudflare
+
+The site currently runs on GitHub Pages with Squarespace DNS. This setup works and scores well (93/95/100/100 on Lighthouse mobile), but one infrastructure upgrade unlocks the remaining performance and security headroom.
+
+**What GitHub Pages can't do:**
+- Set long-lived cache headers (`max-age` is capped at 600s / 10 minutes)
+- Serve security headers (CSP, HSTS, COOP, XFO, Trusted Types)
+- DDoS protection
+
+**What Cloudflare adds in one move:**
+- Cache-Control overrides — `max-age=31536000` for `css/styles.css`, images, and SVGs → repeat visits load from disk, near-instant
+- Security headers via Transform Rules — fixes every remaining Lighthouse Best Practices flag
+- Free DDoS protection and CDN edge caching
+- At-cost domain registration (~$10/yr vs. $20/yr at Squarespace)
+
+**When to do it:** When ready to transfer all domains from Squarespace to Cloudflare Registrar. The DNS change is the same whether you transfer or just point nameservers — transfer just consolidates billing and cuts renewal cost. Do it before the next Squarespace renewal cycle.
+
+**Steps:**
+1. Add site to Cloudflare (free plan) → get Cloudflare nameservers
+2. Update nameservers at Squarespace for `thegcoffice.com`
+3. Set SSL/TLS to Full (Strict)
+4. Add Cache Rules: `*.css`, `*.js`, `*.svg`, `*.png` → `max-age=31536000`
+5. Add Transform Rules for security headers (CSP, HSTS, COOP, XFO)
+6. Optionally initiate domain transfer to Cloudflare Registrar
+
+This is the last infrastructure item. Everything else is product.
+
+---
+
 *"Everything in the truck. Nothing on paper. Free forever."*

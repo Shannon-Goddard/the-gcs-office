@@ -17,8 +17,9 @@ A public contractor directory and operational platform seeded from state licensi
 - License, bond, and WC badges green/gray from real `is_bonded` / `is_wc_covered` DynamoDB fields
 - Claimed profiles: full color, click-to-call, click-to-text, work photos, Vetted By wall
 - Unclaimed profiles: grayscale, public data only
-- Cards paginate 24 at a time via base64 `lastKey` token — Load More appends
+- Cards paginate 48 at a time via base64 `lastKey` token — infinite scroll appends
 - List/Map toggle — Leaflet + OpenStreetMap, no API key, markers per contractor with call/text popup
+- Leaflet lazy-loaded on demand — only fetched when Map view is activated
 
 ### Claim Your Space
 - Enter license number + paste the gov URL showing your license
@@ -39,7 +40,7 @@ A public contractor directory and operational platform seeded from state licensi
 
 | Layer | What |
 |---|---|
-| Frontend | Vanilla HTML + Tailwind CSS (CDN) |
+| Frontend | Vanilla HTML + Tailwind CSS (CLI build, purged) |
 | Backend | AWS Lambda (Docker/Python 3.12) |
 | API | Amazon API Gateway (REST) |
 | Database | Amazon DynamoDB |
@@ -61,10 +62,14 @@ A public contractor directory and operational platform seeded from state licensi
 ├── privacy.html
 ├── terms.html
 ├── licenses.html
+├── robots.txt              # Allows all crawlers, points to sitemap
+├── sitemap.xml             # All 7 public pages with priorities
+├── CNAME                   # Custom domain — thegcoffice.com
 ├── LICENSE                 # MIT
 ├── VISION.md               # Full product vision and architecture
 ├── AWS_SETUP.md            # How to rebuild the AWS backend from scratch
 ├── template.yaml           # SAM template — all Lambda functions + API Gateway
+├── package.json            # Tailwind CLI build scripts
 │
 ├── lambda/
 │   ├── Dockerfile          # Single image, all 6 handlers
@@ -93,6 +98,13 @@ A public contractor directory and operational platform seeded from state licensi
 │   ├── labor_data.csv
 │   ├── material_cost.csv
 │   └── ca/riverside/           # Scraped material costs + permit fees
+│
+├── css/
+│   ├── input.css           # Tailwind v4 entry point
+│   └── styles.css          # Purged, minified output (~24KB vs 3MB CDN)
+│
+├── .well-known/
+│   └── security.txt        # RFC 9116 security contact
 │
 └── icons/
     ├── trades/             # 31 trade SVGs
@@ -216,7 +228,54 @@ Requires `BRIGHTDATA_SB_URL` in `.env`. Scrapes Home Depot search results for ma
 | CTAs | `#A0272D` Rapid Red |
 | Font | System UI stack |
 
-Working class truck color palette. No frameworks, no build step, no nonsense.
+Working class truck color palette. No frameworks, no nonsense.
+
+### Frontend Build
+
+```bash
+npm install        # first time only
+npm run build      # rebuilds css/styles.css from all HTML files
+npm run watch      # auto-rebuilds during development
+```
+
+Tailwind v4 CLI scans all HTML files and outputs a purged, minified `css/styles.css`. Run `npm run build` and commit `css/styles.css` any time you add new Tailwind classes.
+
+---
+
+## SEO & Performance
+
+### Technical SEO
+- `robots.txt` — allows all crawlers, references sitemap
+- `sitemap.xml` — all 7 pages with priorities and change frequencies, submitted to Google Search Console
+- `canonical` tags on every page
+- `og:` and `twitter:` meta tags on every page pointing to `thegcoffice.com`
+- `ld+json` structured data on every page — `WebSite` with `SearchAction` on homepage, `WebPage`/`ContactPage` on inner pages
+- `.well-known/security.txt` — RFC 9116 compliant
+- Custom domain: `thegcoffice.com` via GitHub Pages + Squarespace DNS
+- HTTPS enforced
+
+### Performance
+- Tailwind CDN (3MB, render-blocking) replaced with CLI-purged `css/styles.css` (~24KB)
+- Leaflet (~150KB JS + CSS) lazy-loaded on demand — only fetched when Map view is activated
+- All trade icon `<img>` tags have `alt` attributes
+- Contrast ratios pass WCAG AA
+- Infinite scroll replaces Load More button
+- Skeleton shimmer loader on initial fetch
+
+### Lighthouse Scores (Mobile — Slow 4G)
+
+| Metric | Before | After | Delta |
+|---|---|---|---|
+| Performance | 77 | 93 | +16 |
+| Accessibility | 88 | 95 | +7 |
+| Best Practices | 100 | 100 | — |
+| SEO | 92 | 100 | +8 |
+| First Contentful Paint | 2.6s | 0.9s | −1.7s |
+| Largest Contentful Paint | 4.7s | 3.2s | −1.5s |
+| Speed Index | 4.3s | 2.2s | −2.1s |
+| Total Blocking Time | 0ms | 0ms | — |
+
+Primary drivers: Tailwind CDN removal (−3MB render-blocking CSS) and Leaflet lazy-load (−150KB deferred until Map view).
 
 ---
 
