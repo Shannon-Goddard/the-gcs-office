@@ -16,7 +16,7 @@ import base64
 
 REGION     = os.environ.get('AWS_REGION_NAME', 'us-east-1')
 TABLE_NAME = os.environ.get('DYNAMODB_TABLE', 'gcoffice-subs')
-PAGE_SIZE  = 24
+PAGE_SIZE  = 48
 
 TRADES = [
     'general','electrical','plumbing','hvac','painting','roofing','flooring',
@@ -36,19 +36,20 @@ def handler(event, context):
         last_key = params.get('lastKey', None)
 
         if trade == 'all':
-            items = query_all_trades(zip_code)
+            last_trade = None
+            if last_key:
+                try:
+                    last_trade = json.loads(base64.b64decode(last_key).decode()).get('last_trade')
+                except Exception:
+                    pass
+            items, next_key = query_all_trades(zip_code, last_trade)
         else:
             items, next_key = query_trade(zip_code, trade, last_key)
-            return respond(200, {
-                'contractors': [serialize(i) for i in items],
-                'count': len(items),
-                'lastKey': next_key,
-            })
 
         return respond(200, {
             'contractors': [serialize(i) for i in items],
             'count': len(items),
-            'lastKey': None,
+            'lastKey': next_key,
         })
 
     except Exception as e:
@@ -78,10 +79,16 @@ def query_trade(zip_code, trade, last_key_token=None):
     return items, next_token
 
 
-def query_all_trades(zip_code):
-    """Sample up to 2 contractors per trade for the 'all' view — gives variety."""
+def query_all_trades(zip_code, last_trade=None):
+    """Sample up to 2 contractors per trade. last_trade resumes from that trade onward."""
     items = []
+    resume = last_trade is None
+    last_seen_trade = None
     for trade in TRADES:
+        if not resume:
+            if trade == last_trade:
+                resume = True
+            continue
         gsi_key = f'ZIP#{zip_code}#TRADE#{trade}'
         resp = table.query(
             IndexName='zip-trade-index',
@@ -89,9 +96,11 @@ def query_all_trades(zip_code):
             Limit=2,
         )
         items.extend(resp.get('Items', []))
+        last_seen_trade = trade
         if len(items) >= PAGE_SIZE:
             break
-    return items[:PAGE_SIZE]
+    next_token = base64.b64encode(json.dumps({'last_trade': last_seen_trade}).encode()).decode() if len(items) >= PAGE_SIZE else None
+    return items[:PAGE_SIZE], next_token
 
 
 def serialize(item):

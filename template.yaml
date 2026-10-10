@@ -31,7 +31,7 @@ Resources:
     Properties:
       FunctionName: gcoffice-verify-license
       PackageType: Image
-      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v3
       ImageConfig:
         Command: ["verify_license_handler.handler"]
       Policies:
@@ -50,7 +50,7 @@ Resources:
     Properties:
       FunctionName: gcoffice-verify-bond
       PackageType: Image
-      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v3
       ImageConfig:
         Command: ["verify_bond_handler.handler"]
       Events:
@@ -66,7 +66,7 @@ Resources:
     Properties:
       FunctionName: gcoffice-verify-wc
       PackageType: Image
-      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v3
       ImageConfig:
         Command: ["verify_wc_handler.handler"]
       Events:
@@ -82,7 +82,7 @@ Resources:
     Properties:
       FunctionName: gcoffice-get-contractors
       PackageType: Image
-      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v3
       ImageConfig:
         Command: ["get_contractors_handler.handler"]
       Policies:
@@ -101,7 +101,7 @@ Resources:
     Properties:
       FunctionName: gcoffice-get-upload-url
       PackageType: Image
-      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v3
       ImageConfig:
         Command: ["get_upload_url_handler.handler"]
       Policies:
@@ -120,7 +120,7 @@ Resources:
     Properties:
       FunctionName: gcoffice-scan-card
       PackageType: Image
-      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v2
+      ImageUri: 170377509849.dkr.ecr.us-east-1.amazonaws.com/gcoffice-verify:v3
       ImageConfig:
         Command: ["scan_card_handler.handler"]
       Policies:
