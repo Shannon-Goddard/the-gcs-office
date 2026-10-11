@@ -4,7 +4,7 @@
 
 A public contractor directory and operational platform seeded from state licensing board data. Find licensed, bonded, and insured contractors by trade and zip code.
 
-> *"Everything in the truck. Nothing on paper. No more lost receipts."*
+> *"Everything in the truck. Nothing on paper. No more lost business cards."*
 
 ---
 
