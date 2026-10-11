@@ -1,10 +1,10 @@
 # The GC's Office
 
-**Free. Web-first. Built for working contractors.**
+**Built for working contractors.**
 
-A public contractor directory and operational platform seeded from state licensing board data. Find licensed, bonded, and insured contractors by trade and zip code. Claim your profile in 2 minutes. Free forever.
+A public contractor directory and operational platform seeded from state licensing board data. Find licensed, bonded, and insured contractors by trade and zip code.
 
-> *"Everything in the truck. Nothing on paper. Free forever."*
+> *"Everything in the truck. Nothing on paper. No more lost receipts."*
 
 ---
 
